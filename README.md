@@ -29,3 +29,4 @@
   	- fire estinguishers
   	- posters?
   	- https://studentnet.cs.manchester.ac.uk/resources/floorplans/index.php?view=staff
+    - https://en.wikipedia.org/wiki/Wi-Fi_positioning_system (Wi-Fi positioning for indoor tracking?)
