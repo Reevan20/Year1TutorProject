@@ -25,3 +25,6 @@
 	- finding menus for the places
 - Task tracker
 - Pathfinding/guidance app for uni buildings and rooms
+  	- landmarks
+  	- fire estinguishers
+  	- posters?
