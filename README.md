@@ -24,3 +24,4 @@
 - Meal finder/recommendations for places around Uni
 	- finding menus for the places
 - Task tracker
+- Pathfinding/guidance app for uni buildings and rooms
