@@ -28,3 +28,4 @@
   	- landmarks
   	- fire estinguishers
   	- posters?
+  	- https://studentnet.cs.manchester.ac.uk/resources/floorplans/index.php?view=staff
