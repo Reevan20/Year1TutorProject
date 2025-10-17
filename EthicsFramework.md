@@ -9,6 +9,7 @@
 ## Communication:
 - Communicate with anyone on matters of mutual interest.
 - Talk openly about any and all potential issues.
+- Ensure that all members involved are included and understand your ideas.
 
 ## Responsibility:
 - Make sure to build and maintain a safe, healthy, and productive workplace.
