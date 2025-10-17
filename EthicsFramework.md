@@ -1,8 +1,6 @@
 # Ethical Framework
 
----
-
-[//] stealing this from the system admins code of conduct
+[//]: # (stealing this from the system admins code of conduct)
 ## Personal Integrity;
 - Be honest and forward about compitence.
 - Seek others assistence when needed.
