@@ -30,3 +30,20 @@
   	- posters?
   	- https://studentnet.cs.manchester.ac.uk/resources/floorplans/index.php?view=staff
     - https://en.wikipedia.org/wiki/Wi-Fi_positioning_system (Wi-Fi positioning for indoor tracking?)
+ 
+## Schedule:
+### Week 4:
+- Read the article
+- Discuss article
+### Week 5:
+- Actually discuss what we are going to make
+- Get a website design hierarchy
+### Week 6:
+- Write report
+- Keep working on design
+### Week 7-10:
+- Continue
+### Week 11:
+- Poster
+### Week 12:
+- Continue
