@@ -1,29 +1,6 @@
 # Year1TutorProject
 
-## Current Ideas:
-- Something with a subscription service
-	- coupon codes?
-- Pool thing
-- Chess
-- Shazam/audio analysis
-- Meditation app?
-	- Competitive meditation
-- E-commerce
-	- Something specific for UoM/MMU students?
-	- Ebay for students
-- Multi AI chatbot interface
-	- scraping?
-	- graphing chatbot preferences
-- Pub crawl generator
-	- prices
-	- pathfinding
-	- reviews?
-	- google maps data scraping
-- "Where do I get the cheapest [thing]"
-- Card games
-- Meal finder/recommendations for places around Uni
-	- finding menus for the places
-- Task tracker
+## Initial Idea:
 - Pathfinding/guidance app for uni buildings and rooms
   	- landmarks
   	- fire estinguishers
@@ -31,18 +8,37 @@
   	- https://studentnet.cs.manchester.ac.uk/resources/floorplans/index.php?view=staff
     - https://en.wikipedia.org/wiki/Wi-Fi_positioning_system (Wi-Fi positioning for indoor tracking?)
  
+## Key Features:
+- Maps all rooms + entrances
+- Select start/end points
+	- Search using attributes? (type of room?)
+	- accessibility options
+	- warnings for room restrictions
+- Finds the best route from start to end point
+	- Displays route on a map
+	- Textual description of route?
+		- Include pictures?
+	- Live updates position on route?
+
+ ## Database Schema:
+ **Table: Rooms**
+ - id: int (PK)
+ - number: string
+ - name: string
+ - floor: string
+ - type: string (FK?)
+
+**Table: Office?**
+This is a possible table
+- id: int (PK)
+- staff: string
+- office_hours??: date-time
+ 
 ## Schedule:
-### Week 4:
-- Read the article
-- Discuss article
-### Week 5:
-- Actually discuss what we are going to make
-- Get a website design hierarchy
-### Week 6:
-- Write report
-- Keep working on design
 ### Week 7-10:
-- Continue
+- **Week 7:**
+	- Get nodes for traversal graph planned
+ 	- database schema
 ### Week 11:
 - Poster
 ### Week 12:
