@@ -43,3 +43,8 @@ This is a possible table
 - Poster
 ### Week 12:
 - Continue
+
+# TODO:
+- [ ] Plan first floor for traversal graph - Orin
+- [ ] Database entry - Abdullah
+- [ ] Website design mockup - Ndopiwe
