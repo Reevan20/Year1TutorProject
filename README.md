@@ -36,15 +36,19 @@ This is a possible table
  
 ## Schedule:
 ### Week 7-10:
-- **Week 7:**
-	- Get nodes for traversal graph planned
+- **Week 8:**
+	- add more floors
  	- database schema
+	- start search
 ### Week 11:
 - Poster
 ### Week 12:
 - Continue
 
 # TODO:
-- [ ] Plan first floor for traversal graph - Orin
-- [ ] Database entry - Abdullah
-- [ ] Website design mockup - Ndopiwe
+- [ ] search filters
+	- room name
+	- floor number
+	- room type
+	- person?
+- [ ] convert to database - evan
