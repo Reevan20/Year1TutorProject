@@ -80,6 +80,11 @@ html,body {
 // import { OrbitControls } from 'https://unpkg.com/three@0.165.0/examples/jsm/controls/OrbitControls.js';
 // import { OBJLoader } from 'https://unpkg.com/three@0.165.0/examples/jsm/loaders/OBJLoader.js';
 
+const KILBURN_GROUND_FLOOR_MAP = "Assets/kbgf.jpg"
+const ROOMS_OBJECT = "Assets/rooms.obj"
+const MAP_OBJECT = "Assets/map.obj"
+const DOORFRAMES_OBJECT = "Assets/doorframes.obj"
+const CORRIDORS_OBJECT = "Assets/corridors.obj"
 
 let progress = 0
 const slider = document.getElementById("slider")
@@ -207,7 +212,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 //const image = new THREE.TextureLoader().load("kbgf.jpg")
-const image = new THREE.TextureLoader().load('kbgf.jpg', (tex) => {
+const image = new THREE.TextureLoader().load(KILBURN_GROUND_FLOOR_MAP, (tex) => {
   tex.minFilter = THREE.LinearFilter;
   tex.magFilter = THREE.NearestFilter;
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
@@ -226,7 +231,7 @@ const loader = new OBJLoader()
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-loader.load("corridors.obj", (object)=>{
+loader.load(CORRIDORS_OBJECT, (object)=>{
   object.scale.set(.65,.65,.65)
   object.position.set(0,0,100)
   object.traverse((child) => {
@@ -256,7 +261,7 @@ loader.load("corridors.obj", (object)=>{
     console.error('An error occurred:', error);
 })
 
-loader.load("rooms.obj", (object)=>{
+loader.load(ROOMS_OBJECT, (object)=>{
   object.scale.set(.65,.65,.65)
   object.position.set(0,0,100)
   object.traverse((child) => {
@@ -286,7 +291,7 @@ loader.load("rooms.obj", (object)=>{
     console.error('An error occurred:', error);
 })
 
-loader.load("doorframes.obj", (object)=>{
+loader.load(DOORFRAMES_OBJECT, (object)=>{
   object.scale.set(.65,.65,.65)
   object.position.set(0,0,100)
   object.traverse((child) => {
