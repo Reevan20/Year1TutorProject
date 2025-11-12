@@ -124,6 +124,14 @@ const PathFinder = {
     distances: [],
     totalDistance: 0,
 
+    resetCamera(camera, user, smoother, tugLength, smootherLength, cameraHeight) {
+        smoother.position.copy(user.position)
+        smoother.z += smootherLength
+        camera.position.copy(smoother.position)
+        camera.z += tugLength
+        camera.translateY(2.5)
+    },
+
     start(scene, scale, begin, end) {
         const nodeGeometry = new THREE.BoxGeometry(.1, .1, .1)
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff })
@@ -143,11 +151,11 @@ const PathFinder = {
             }
 
             var first = false
-            const nodeUser = new THREE.Mesh(nodeGeometry, nodeMaterial)
-            nodeUser.position.x = posX
-            nodeUser.position.z = posZ
+            const nodeCube = new THREE.Mesh(nodeGeometry, nodeMaterial)
+            nodeCube.position.x = posX
+            nodeCube.position.z = posZ
             this.points.push(new THREE.Vector3(posX, .025, posZ))
-            scene.add(nodeUser)
+            scene.add(nodeCube)
             lastPoint = [posX, posZ]
         }
 
@@ -255,58 +263,51 @@ function loadAllObjects(loader) {
 const loader = new OBJLoader()
 loadAllObjects(loader);
 
-function createUser() {
+function createUser(origin) {
     const geometry = new THREE.BoxGeometry(.3, 1, .3);
     const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const user = new THREE.Mesh(geometry, boxMaterial);
 
-    user.position.x = 1459 * scale
-    user.position.z = 2005 * scale
+    var originPos = PathFinder.nodes[origin+""]["position"]
+
+    user.position.x = originPos[0] * scale
+    user.position.z = originPos[1] * scale
     scene.add(user);
 
     return user;
 }
 
-function createSmoother() {
+function createSmoother(origin, smootherLength) {
     const smootherMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });
     const smootherGeometry = new THREE.BoxGeometry(1, 1, 1);
-    return new THREE.Mesh(smootherGeometry, smootherMaterial);
+    var smoother = new THREE.Mesh(smootherGeometry, smootherMaterial);
+    var originPos = PathFinder.nodes[origin]["position"]
+    smoother.position.x = originPos[0]
+    smoother.position.z = originPos[1] + smootherLength
+    console.log(smoother.position)
+    return smoother
 }
 
 
 
-const scale = 130 / 3008;
-const tugLength = 2.5;
-const smootherLength = 1;
 
-const user = createUser();
-const smoother = createSmoother();
 
-console.log(scale)
-
-// scene.add(smoother)
-smoother.position.copy(user.position)
-smoother.position.z += 2.5
-
-const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000);
-
-function initialiseCamera(camera, offsetVector, user, smoother) {
-    camera.lookAt(new THREE.Vector3(0, -1, 0))
-    camera.position.copy(smoother.position)
-    camera.position.add(offsetVector)
+function initialiseCamera(camera, cameraHeight, origin, tugLength, smootherLength) {
+    // camera.lookAt(new THREE.Vector3(0, -1, 0))
+    var originPos = PathFinder.nodes[origin]["position"]
+    console.log(originPos)
+    camera.position.x = originPos[0]
+    camera.position.z = originPos[1] + smootherLength + tugLength
+    camera.position.y = cameraHeight
     // camera.position.z=100
     // camera.position.x=130
     // camera.position.y=50
+    console.log(camera.position)
+    console.log("fr2")
     camera.lookAt(user.position)
     moveCamera()
 }
 
-const offsetVector = new THREE.Vector3(0, 2, 1.5);
-initialiseCamera(camera, offsetVector, user, smoother);
 
 function moveCamera() {
 
@@ -315,8 +316,15 @@ function moveCamera() {
     var distance = (xDiff ** 2 + zDiff ** 2) ** 0.5
 
     var mult = smootherLength / distance
+    // console.log(smoother.position)
+    // console.log("xdiff "+xDiff)
+    // console.log("zdiff "+zDiff)
+    // console.log("distance "+distance)
+    // console.log("mult "+mult)
+    // console.log("userpos "+JSON.stringify(user.position))
     smoother.position.x = user.position.x - xDiff * mult
     smoother.position.z = user.position.z - zDiff * mult
+    // console.log(smoother.position)
     // smoother.position.x +=(user.position.x-smoother.position.x)*0.1
     // smoother.position.z +=(user.position.z-smoother.position.z)*0.05
 
@@ -375,8 +383,38 @@ function walk() {
 }
 
 
-PathFinder.start(scene, scale, 0, 46)
+var origin = 84
+var target = 23
+const scale = 130 / 3008;
+const tugLength = 2.5;
+const smootherLength = 1;
+
+const cameraHeight = 2.5
+
+const user = createUser(origin);
+const smoother = createSmoother(origin, smootherLength);
+
+console.log(scale)
+
+// scene.add(smoother)
+
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000);
+camera.position.set(0, 0, 0)
+console.log(camera.position)
+initialiseCamera(camera, cameraHeight, origin, tugLength, smootherLength);
+console.log(camera.position)
+
+
+PathFinder.start(scene, scale, origin, target)
+// PathFinder.resetCamera(camera, user, smoother, tugLength, smootherLength, cameraHeight)
+console.log("resetted")
 function animate() {
+    // console.log(camera.position)
     requestAnimationFrame(animate);
     // user.position.x += 0.01
     // progress += 0.0004
