@@ -263,7 +263,13 @@ loadAllObjects(loader);
 function createCube() {
     const geometry = new THREE.BoxGeometry(.3, 1, .3);
     const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    return new THREE.Mesh(geometry, boxMaterial);
+    const cube = new THREE.Mesh(geometry, boxMaterial);
+
+    cube.position.x = 1459 * scale
+    cube.position.z = 2005 * scale
+    scene.add(cube);
+    
+    return cube;
 }
 
 function createSmoother() {
@@ -282,10 +288,7 @@ const camOffset = { "x": 0, "y": 2, "z": 1.5 };
 const offsetVector = new THREE.Vector3(camOffset.x, camOffset.y, camOffset.z);
 
 console.log(scale)
-cube.position.x = 1459 * scale
-cube.position.z = 2005 * scale
 
-scene.add(cube);
 // scene.add(smoother)
 smoother.position.copy(cube.position)
 smoother.position.z += 2.5
