@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilburn Locator</title>
+</head>
+<style>
+body{
+    background-image: url('Kilburn.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+button{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    border-radius: 20px;
+}
+button:hover{
+    background-color: aqua;
+}
+input{
+    width: 350px;
+    height: 35px;
+    border-radius: 10px;
+}
+.floor_option{
+    width: 350px;
+    height: 35px;
+    border-radius: 10px;
+}
+</style>
+<body>
+<div class="content">
+<h1>Which floor is your destination?</h1>
+<select class="floor_option">
+    <option id="ground_floor">Ground Floor</option>
+    <option id="first_floor">First Floor</option>
+    <option id="second_floor">Second Floor</option>
+</select>
+<br>
+<input type="text" placeholder="Room">
+<br>
+<button id="locate">Locate</button>
+</div>
+</body>
+</html>
