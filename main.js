@@ -206,11 +206,10 @@ function createPlane(scene) {
 
 createPlane(scene);
 
-const loader = new OBJLoader()
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-function loadObject(objectFile, materialColor, lineColor) {
+function loadObject(loader, objectFile, materialColor, lineColor) {
     loader.load(objectFile, (object) => {
         object.scale.set(.65, .65, .65)
         object.position.set(0, 0, 100)
@@ -242,38 +241,40 @@ function loadObject(objectFile, materialColor, lineColor) {
         })
 }
 
-function loadCorridors() {
-    loadObject(CORRIDORS_OBJECT, 0x008800, 0x00ff00);
+function loadCorridors(loader) {
+    loadObject(loader, CORRIDORS_OBJECT, 0x008800, 0x00ff00);
 }
 
-function loadRooms() {
-    loadObject(ROOMS_OBJECT, 0x880088, 0xff00ff)
+function loadRooms(loader) {
+    loadObject(loader, ROOMS_OBJECT, 0x880088, 0xff00ff)
 }
 
-function loadDoorframes() {
-    loadObject(DOORFRAMES_OBJECT, 0x000088, 0x0000ff);
+function loadDoorframes(loader) {
+    loadObject(loader, DOORFRAMES_OBJECT, 0x000088, 0x0000ff);
 }
 
-function loadAllObjects() {
-    loadCorridors();
-    loadRooms();
-    loadDoorframes();
+function loadAllObjects(loader) {
+    loadCorridors(loader);
+    loadRooms(loader);
+    loadDoorframes(loader);
 }
 
-loadAllObjects();
+const loader = new OBJLoader()
+loadAllObjects(loader);
 
 function createCube() {
     const geometry = new THREE.BoxGeometry(.3, 1, .3);
     const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     return new THREE.Mesh(geometry, boxMaterial);
 }
-const cube = createCube();
 
 function createSmoother() {
     const smootherMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });
     const smootherGeometry = new THREE.BoxGeometry(1, 1, 1);
     return new THREE.Mesh(smootherGeometry, smootherMaterial);
 }
+
+const cube = createCube();
 const smoother = createSmoother();
 
 const scale = 130 / 3008;
