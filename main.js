@@ -193,12 +193,11 @@ function loadImage(imageFile) {
     });
 }
 
-const image = loadImage(KILBURN_GROUND_FLOOR_MAP);
-
-const mapMaterial = new THREE.MeshBasicMaterial({ map: image })
-
 function createPlane() {
+    const image = loadImage(KILBURN_GROUND_FLOOR_MAP);
+    const mapMaterial = new THREE.MeshBasicMaterial({ map: image })
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(130, 100), mapMaterial)
+    
     plane.position.x = 65
     plane.position.z = 50
     plane.rotation.x = -Math.PI / 2
