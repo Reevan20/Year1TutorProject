@@ -124,12 +124,10 @@ const PathFinder = {
     distances: [],
     totalDistance: 0,
 
-    start(scene, scale) {
+    start(scene, scale, begin, end) {
         const nodeGeometry = new THREE.BoxGeometry(.1, .1, .1)
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff })
 
-        var begin = 0
-        var end = 46
         var cl = this.aStar(begin, end)
         var path = this.trace(begin, end, cl)
         // points = []
@@ -369,7 +367,7 @@ function walk() {
 }
 
 
-PathFinder.start(scene, scale)
+PathFinder.start(scene, scale, 0, 46)
 function animate() {
     requestAnimationFrame(animate);
     // cube.position.x += 0.01
