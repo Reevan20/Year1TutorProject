@@ -169,11 +169,6 @@ const PathFinder = {
 }
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000)
 scene.background = new THREE.Color(0x87ceeb);
 
 
@@ -268,7 +263,7 @@ function createCube() {
     cube.position.x = 1459 * scale
     cube.position.z = 2005 * scale
     scene.add(cube);
-    
+
     return cube;
 }
 
@@ -293,15 +288,23 @@ console.log(scale)
 smoother.position.copy(cube.position)
 smoother.position.z += 2.5
 
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000);
 
-camera.lookAt(new THREE.Vector3(0, -1, 0))
-camera.position.copy(smoother.position)
-camera.position.add(offsetVector)
-// camera.position.z=100
-// camera.position.x=130
-// camera.position.y=50
-camera.lookAt(cube.position)
-moveCamera()
+function initialiseCamera() {
+    camera.lookAt(new THREE.Vector3(0, -1, 0))
+    camera.position.copy(smoother.position)
+    camera.position.add(offsetVector)
+    // camera.position.z=100
+    // camera.position.x=130
+    // camera.position.y=50
+    camera.lookAt(cube.position)
+    moveCamera()
+}
+initialiseCamera();
 
 function moveCamera() {
 
