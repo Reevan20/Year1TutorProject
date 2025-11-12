@@ -143,11 +143,11 @@ const PathFinder = {
             }
 
             var first = false
-            const nodeCube = new THREE.Mesh(nodeGeometry, nodeMaterial)
-            nodeCube.position.x = posX
-            nodeCube.position.z = posZ
+            const nodeUser = new THREE.Mesh(nodeGeometry, nodeMaterial)
+            nodeUser.position.x = posX
+            nodeUser.position.z = posZ
             this.points.push(new THREE.Vector3(posX, .025, posZ))
-            scene.add(nodeCube)
+            scene.add(nodeUser)
             lastPoint = [posX, posZ]
         }
 
@@ -255,16 +255,16 @@ function loadAllObjects(loader) {
 const loader = new OBJLoader()
 loadAllObjects(loader);
 
-function createCube() {
+function createUser() {
     const geometry = new THREE.BoxGeometry(.3, 1, .3);
     const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, boxMaterial);
+    const user = new THREE.Mesh(geometry, boxMaterial);
 
-    cube.position.x = 1459 * scale
-    cube.position.z = 2005 * scale
-    scene.add(cube);
+    user.position.x = 1459 * scale
+    user.position.z = 2005 * scale
+    scene.add(user);
 
-    return cube;
+    return user;
 }
 
 function createSmoother() {
@@ -273,18 +273,19 @@ function createSmoother() {
     return new THREE.Mesh(smootherGeometry, smootherMaterial);
 }
 
-const cube = createCube();
-const smoother = createSmoother();
+
 
 const scale = 130 / 3008;
 const tugLength = 2.5;
 const smootherLength = 1;
 
+const user = createUser();
+const smoother = createSmoother();
 
 console.log(scale)
 
 // scene.add(smoother)
-smoother.position.copy(cube.position)
+smoother.position.copy(user.position)
 smoother.position.z += 2.5
 
 const camera = new THREE.PerspectiveCamera(
@@ -293,31 +294,31 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000);
 
-function initialiseCamera(camera, offsetVector, cube, smoother) {
+function initialiseCamera(camera, offsetVector, user, smoother) {
     camera.lookAt(new THREE.Vector3(0, -1, 0))
     camera.position.copy(smoother.position)
     camera.position.add(offsetVector)
     // camera.position.z=100
     // camera.position.x=130
     // camera.position.y=50
-    camera.lookAt(cube.position)
+    camera.lookAt(user.position)
     moveCamera()
 }
 
 const offsetVector = new THREE.Vector3(0, 2, 1.5);
-initialiseCamera(camera, offsetVector, cube, smoother);
+initialiseCamera(camera, offsetVector, user, smoother);
 
 function moveCamera() {
 
-    var xDiff = cube.position.x - smoother.position.x
-    var zDiff = cube.position.z - smoother.position.z
+    var xDiff = user.position.x - smoother.position.x
+    var zDiff = user.position.z - smoother.position.z
     var distance = (xDiff ** 2 + zDiff ** 2) ** 0.5
 
     var mult = smootherLength / distance
-    smoother.position.x = cube.position.x - xDiff * mult
-    smoother.position.z = cube.position.z - zDiff * mult
-    // smoother.position.x +=(cube.position.x-smoother.position.x)*0.1
-    // smoother.position.z +=(cube.position.z-smoother.position.z)*0.05
+    smoother.position.x = user.position.x - xDiff * mult
+    smoother.position.z = user.position.z - zDiff * mult
+    // smoother.position.x +=(user.position.x-smoother.position.x)*0.1
+    // smoother.position.z +=(user.position.z-smoother.position.z)*0.05
 
 
 
@@ -328,7 +329,7 @@ function moveCamera() {
     mult = tugLength / distance
     camera.position.x = smoother.position.x - xDiff * mult
     camera.position.z = smoother.position.z - zDiff * mult
-    camera.lookAt(cube.position)
+    camera.lookAt(user.position)
 
     xDiff = smoother.position.x - camera.position.x
     zDiff = smoother.position.z - camera.position.z
@@ -337,7 +338,7 @@ function moveCamera() {
     mult = tugLength / distance
     // camera.position.x = smoother.position.x - xDiff*mult
     // camera.position.z = smoother.position.z - zDiff*mult
-    // camera.lookAt(cube.position)
+    // camera.lookAt(user.position)
 
 }
 
@@ -366,8 +367,8 @@ function walk() {
 
     var pos = interpolate(PathFinder.points[between], PathFinder.points[between + 1], p)
 
-    cube.position.x = pos[0]
-    cube.position.z = pos[1]
+    user.position.x = pos[0]
+    user.position.z = pos[1]
 
 
 
@@ -377,7 +378,7 @@ function walk() {
 PathFinder.start(scene, scale, 0, 46)
 function animate() {
     requestAnimationFrame(animate);
-    // cube.position.x += 0.01
+    // user.position.x += 0.01
     // progress += 0.0004
     // if (progress >=1) {
     //   progress = 0
