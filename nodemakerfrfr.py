@@ -172,8 +172,8 @@ while (status):
 
 
 
-            print(undoStack)
-            # print(dots)
+            # print(undoStack)
+            print(dots)
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_d:
                 dHeld = False
