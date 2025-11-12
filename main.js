@@ -126,15 +126,6 @@ const PathFinder = {
 
 }
 
-
-let scale = 130 / 3008
-let camOffset = { "x": 0, "y": 2, "z": 1.5 }
-let offsetVector = new THREE.Vector3(camOffset.x, camOffset.y, camOffset.z)
-
-let tugLength = 2.5
-let smootherLength = 1
-
-
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
     75,
@@ -149,13 +140,16 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 //const image = new THREE.TextureLoader().load("kbgf.jpg")
-const image = new THREE.TextureLoader().load(KILBURN_GROUND_FLOOR_MAP, (tex) => {
-    tex.minFilter = THREE.LinearFilter;
-    tex.magFilter = THREE.NearestFilter;
-    tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    tex.generateMipmaps = false;
-});
+function loadImage(imageFile) {
+    return new THREE.TextureLoader().load(imageFile, (tex) => {
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.NearestFilter;
+        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        tex.generateMipmaps = false;
+    });
+}
 
+const image = loadImage(KILBURN_GROUND_FLOOR_MAP);
 
 const mapMaterial = new THREE.MeshBasicMaterial({ map: image })
 
@@ -238,6 +232,12 @@ function createSmoother() {
 }
 const smoother = createSmoother();
 
+const scale = 130 / 3008;
+const tugLength = 2.5;
+const smootherLength = 1;
+const camOffset = { "x": 0, "y": 2, "z": 1.5 };
+const offsetVector = new THREE.Vector3(camOffset.x, camOffset.y, camOffset.z);
+
 console.log(scale)
 cube.position.x = 1459 * scale
 cube.position.z = 2005 * scale
@@ -256,10 +256,6 @@ camera.position.add(offsetVector)
 // camera.position.y=50
 camera.lookAt(cube.position)
 moveCamera()
-
-
-
-
 
 function moveCamera() {
 
