@@ -1,6 +1,6 @@
 import pygame
 import numpy as np
-
+import copy
 
 pygame.init()
 
@@ -47,7 +47,7 @@ workingNum = "-1"
 isTyping = False
 dHeld = False
 selected = []
-
+undoStack = []
 typedText = ""
 
 def screenToWorld(coords):
@@ -79,7 +79,9 @@ while (status):
             # t to select multiple dots
             # x to align dots horizontally
             # y to align dots vertically
+            # u to undo
             if not isTyping:
+                undoStack.append(copy.deepcopy(dots))
                 if event.key == pygame.K_w:
                     dots[str(dotNum)] = {"position":screenToWorld(mousePos).tolist(), "connections": [], "labels": []}
                     workingNum = str(dotNum)
@@ -154,6 +156,10 @@ while (status):
                     avg = sum(ys)/len(ys)
                     for y in selected:
                         dots[y]["position"][1] = avg
+                elif event.key == pygame.K_u:
+                    undoStack.pop()
+                    if len(undoStack) > 1:
+                        dots = undoStack.pop()
 
 
             elif event.key == pygame.K_RETURN:
@@ -166,7 +172,8 @@ while (status):
 
 
 
-            print(dots)
+            print(undoStack)
+            # print(dots)
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_d:
                 dHeld = False
