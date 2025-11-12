@@ -124,7 +124,7 @@ const PathFinder = {
     distances: [],
     totalDistance: 0,
 
-    start() {
+    start(scene, scale) {
         const nodeGeometry = new THREE.BoxGeometry(.1, .1, .1)
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff })
 
@@ -193,17 +193,18 @@ function loadImage(imageFile) {
     });
 }
 
-function createPlane() {
+function createPlane(scene) {
     const image = loadImage(KILBURN_GROUND_FLOOR_MAP);
     const mapMaterial = new THREE.MeshBasicMaterial({ map: image })
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(130, 100), mapMaterial)
-    
+
     plane.position.x = 65
     plane.position.z = 50
     plane.rotation.x = -Math.PI / 2
     scene.add(plane)
 }
-createPlane();
+
+createPlane(scene);
 
 const loader = new OBJLoader()
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -367,7 +368,7 @@ function walk() {
 }
 
 
-PathFinder.start()
+PathFinder.start(scene, scale)
 function animate() {
     requestAnimationFrame(animate);
     // cube.position.x += 0.01
