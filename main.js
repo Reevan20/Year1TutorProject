@@ -279,8 +279,7 @@ const smoother = createSmoother();
 const scale = 130 / 3008;
 const tugLength = 2.5;
 const smootherLength = 1;
-const camOffset = { "x": 0, "y": 2, "z": 1.5 };
-const offsetVector = new THREE.Vector3(camOffset.x, camOffset.y, camOffset.z);
+
 
 console.log(scale)
 
@@ -294,7 +293,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000);
 
-function initialiseCamera() {
+function initialiseCamera(camera, offsetVector, cube, smoother) {
     camera.lookAt(new THREE.Vector3(0, -1, 0))
     camera.position.copy(smoother.position)
     camera.position.add(offsetVector)
@@ -304,7 +303,9 @@ function initialiseCamera() {
     camera.lookAt(cube.position)
     moveCamera()
 }
-initialiseCamera();
+
+const offsetVector = new THREE.Vector3(0, 2, 1.5);
+initialiseCamera(camera, offsetVector, cube, smoother);
 
 function moveCamera() {
 
