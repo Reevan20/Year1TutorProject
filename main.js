@@ -158,11 +158,15 @@ const image = new THREE.TextureLoader().load(KILBURN_GROUND_FLOOR_MAP, (tex) => 
 
 
 const mapMaterial = new THREE.MeshBasicMaterial({ map: image })
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(130, 100), mapMaterial)
-plane.position.x = 65
-plane.position.z = 50
-plane.rotation.x = -Math.PI / 2
-scene.add(plane)
+
+function createPlane() {
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(130, 100), mapMaterial)
+    plane.position.x = 65
+    plane.position.z = 50
+    plane.rotation.x = -Math.PI / 2
+    scene.add(plane)
+}
+createPlane();
 
 const loader = new OBJLoader()
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -212,17 +216,28 @@ function loadDoorframes() {
     loadObject(DOORFRAMES_OBJECT, 0x000088, 0x0000ff);
 }
 
-loadCorridors();
-loadRooms();
-loadDoorframes();
+function loadAllObjects() {
+    loadCorridors();
+    loadRooms();
+    loadDoorframes();
+}
 
-const geometry = new THREE.BoxGeometry(.3, 1, .3)
-const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-const cube = new THREE.Mesh(geometry, boxMaterial)
+loadAllObjects();
 
-const smootherMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff })
-const smootherGeometry = new THREE.BoxGeometry(1, 1, 1)
-const smoother = new THREE.Mesh(smootherGeometry, smootherMaterial)
+function createCube() {
+    const geometry = new THREE.BoxGeometry(.3, 1, .3);
+    const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    return new THREE.Mesh(geometry, boxMaterial);
+}
+const cube = createCube();
+
+function createSmoother() {
+    const smootherMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+    const smootherGeometry = new THREE.BoxGeometry(1, 1, 1);
+    return new THREE.Mesh(smootherGeometry, smootherMaterial);
+}
+const smoother = createSmoother();
+
 console.log(scale)
 cube.position.x = 1459 * scale
 cube.position.z = 2005 * scale
