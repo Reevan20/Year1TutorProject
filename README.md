@@ -40,8 +40,14 @@ This is a possible table
 	- Properly set up databases - evan
  	- link to website front end for searching - ndow
   	- merge branches + change names - krish
-  	- start on poster + powerpoint? - orin + abdul
+  	- start on poster + powerpoint? - orin + abdul (MC esher type shi)
 ### Week 11:
 - Poster
 ### Week 12:
 - Continue
+
+# Name ideas:
+- uomaps/UOMaps
+- burn the maps/ burn maps
+- escape kilburn
+- kilburn room navigator / KRN
