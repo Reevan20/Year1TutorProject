@@ -36,19 +36,12 @@ This is a possible table
  
 ## Schedule:
 ### Week 7-10:
-- **Week 8:**
-	- add more floors
- 	- database schema
-	- start search
+- **Week 9:**
+	- Properly set up databases - evan
+ 	- link to website front end for searching - ndow
+  	- merge branches + change names - krish
+  	- start on poster + powerpoint? - orin + abdul
 ### Week 11:
 - Poster
 ### Week 12:
 - Continue
-
-# TODO:
-- [ ] search filters
-	- room name
-	- floor number
-	- room type
-	- person?
-- [ ] convert to database - evan
