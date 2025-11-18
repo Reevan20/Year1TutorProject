@@ -51,3 +51,4 @@ This is a possible table
 - burn the maps/ burn maps
 - escape kilburn
 - kilburn room navigator / KRN
+- location obtainer of kilburn / LOOK
