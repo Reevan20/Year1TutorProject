@@ -19,6 +19,7 @@
 	- Textual description of route?
 		- Include pictures?
 	- Live updates position on route?
+ - Use QR codes to pass where starting points are (using URL param)
 
  ## Database Schema:
  **Table: Rooms**
@@ -36,11 +37,13 @@ This is a possible table
  
 ## Schedule:
 ### Week 7-10:
-- **Week 9:**
-	- Properly set up databases - evan
+- **Week 10:**
+	- refactor branch - evan
  	- link to website front end for searching - ndow
-  	- merge branches + change names - krish
-  	- start on poster + powerpoint? - orin + abdul (MC esher type shi)
+  	- node ids in the database - krish
+  	- work out solution for multiple floors - orin
+  	- Poster - Abdul
+  	- Documentation - 
 ### Week 11:
 - Poster
 ### Week 12:
