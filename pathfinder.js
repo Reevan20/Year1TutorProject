@@ -15,18 +15,18 @@ import { OBJLoader } from 'https://unpkg.com/three@0.165.0/examples/jsm/loaders/
 // import { OrbitControls } from 'https://unpkg.com/three@0.165.0/examples/jsm/controls/OrbitControls.js';
 // import { OBJLoader } from 'https://unpkg.com/three@0.165.0/examples/jsm/loaders/OBJLoader.js';
 
-const KILBURN_GROUND_FLOOR_MAP = "Assets/kbgf.jpg"
-const ROOMS_OBJECT = "Assets/rooms_2.obj"
-const MAP_OBJECT = "Assets/map_2.obj"
-const DOORFRAMES_OBJECT = "Assets/doorframes_2.obj"
-const CORRIDORS_OBJECT = "Assets/corridors_2.obj"
-const GOODSLIFT_OBJECT = "Assets/goodslift.obj"
+const KILBURN_GROUND_FLOOR_MAP = "Assets/Ground/kbgf.jpg"
+const ROOMS_OBJECT = "Assets/Ground/rooms_2.obj"
+const MAP_OBJECT = "Assets/Ground/map_2.obj"
+const DOORFRAMES_OBJECT = "Assets/Ground/doorframes_2.obj"
+const CORRIDORS_OBJECT = "Assets/Ground/corridors_2.obj"
+const GOODSLIFT_OBJECT = "Assets/Ground/goodslift.obj"
 
-const LF_MAP = "mcjesus/lf_scaled.jpg"
-const LF_ROOMS = "mcjesus/rooms_scaled.obj"
-const LF_CORRIDORS = "mcjesus/corridors_scaled.obj"
-const LF_DOORFRAMES = "mcjesus/doorframes_scaled.obj"
-const LF_GOODSLIFT = "mcjesus/goodslift_scaled.obj"
+const LF_MAP = "Assets/LowerFirst/lf_scaled.jpg"
+const LF_ROOMS = "Assets/LowerFirst/rooms_scaled.obj"
+const LF_CORRIDORS = "Assets/LowerFirst/corridors_scaled.obj"
+const LF_DOORFRAMES = "Assets/LowerFirst/doorframes_scaled.obj"
+const LF_GOODSLIFT = "Assets/LowerFirst/goodslift_scaled.obj"
 
 let progress = 0;
 function InitialiseSlider() {
