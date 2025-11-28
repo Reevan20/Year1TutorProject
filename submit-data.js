@@ -11,18 +11,13 @@ button.onclick = () => {
     const data = {floor:floor, room:room};
 
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-        }
-    }
 
     xmlhttp.open("GET", PHP_SERVER + "?floor="+floor+"&room="+room);
     xmlhttp.send()
 
     xmlhttp.onload = function(){
         alert(this.responseText);
+        window.location.assign(LINKED_WEBPAGE);
     }
 
-    window.location.replace(LINKED_WEBPAGE);
 };

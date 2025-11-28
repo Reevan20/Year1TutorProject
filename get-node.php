@@ -4,14 +4,20 @@ $db = new SQLite3("pathing_app.db");
 if (isset($_GET["floor"]) && isset($_GET["room"])){
     $floor = $_GET["floor"];
     $number = $_GET["room"];
-    $sql = "SELECT node FROM Rooms WHERE floor == ? and room == ?";
-    $result = $db->query($sql);
+    $sql = $db->prepare("SELECT node FROM Rooms WHERE floor == :floor and number == :number");
+    $sql->bindParam(":floor", $floor);
+    $sql->bindParam(":number", $number);
 
-    if ($result->num_rows == 1){
-        echo $result->fetch_assoc()["node"];
+    $sql->execute();
+
+    $result = $db->query($sql->getSQL(true));
+
+    $row = $result->fetchArray(SQLITE3_ASSOC);
+    if ($row){
+        echo $row["node"];
     }
     else{
-        echo $result->fetch_assoc()["node"];
-}
+        echo NULL;
+    }
 }
 ?>
