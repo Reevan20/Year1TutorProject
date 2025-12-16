@@ -34,24 +34,8 @@ This is a possible table
 - id: int (PK)
 - staff: string
 - office_hours??: date-time
- 
-## Schedule:
-### Week 7-10:
-- **Week 10:**
-	- refactor branch - evan
- 	- link to website front end for searching - ndow
-  	- node ids in the database - krish
-  	- work out solution for multiple floors - orin
-  	- Poster - Abdul
-  	- Documentation - 
-### Week 11:
-- Poster
-### Week 12:
-- Continue
 
-# Name ideas:
-- uomaps/UOMaps
-- burn the maps/ burn maps
-- escape kilburn
-- kilburn room navigator / KRN
-- location obtainer of kilburn / LOOK
+# TODO:
+- finish front page
+- add app into window on front page
+- redo assets for incorrectly scaled floors
