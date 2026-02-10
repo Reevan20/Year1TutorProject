@@ -479,9 +479,19 @@ function labelTexts() {
 
 
 
+var url = new URL(window.location)
+if (url.searchParams.get("origin") != null) {
+    var origin = url.searchParams.get("origin")
+} else {
+    var origin = 1
+}
 
-var origin = 7
-var target = 74
+if (url.searchParams.get("target") != null) {
+    var target = url.searchParams.get("target")
+} else {
+    var target = 2
+}
+
 
 // const scale_lf = 125.68 / 2907
 const tugLength = 2.5;
