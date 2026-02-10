@@ -341,7 +341,20 @@ drawNodes()
 initialiseUser()
 initialiseSlider()
 
-var path = aStar(1, 51)
+
+var url = new URL(window.location)
+if (url.searchParams.get("origin")) {
+    var origin = url.searchParams.get("origin")
+} else {
+    var origin = 1
+}
+if (url.searchParams.get("target")) {
+    var target = url.searchParams.get("target")
+} else {
+    var target = 2
+}
+
+var path = aStar(origin, target)
 drawPath(path)
 
 
