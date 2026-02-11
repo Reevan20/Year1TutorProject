@@ -11,8 +11,38 @@
       align-items: center;
       text-align: center;
       touch-action: none;
-
   }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+	padding: 1%;
+    background-color: white;
+	/* change these to be better for phone */
+	height: 15%;
+	width: 40em;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    border: 0;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: aqua;
+}
+
+input {
+    width: 350px;
+    height: 35px;
+    border-radius: 10px;
+}
 
   p {
       font-size: 2em;
