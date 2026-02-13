@@ -31,9 +31,6 @@ $grab1 = null;
     border: 0;
 }
 body{
-    background-image: url('Kilburn.jpg');
-    background-size:cover;
-    background-repeat: no-repeat;
     font-family: 'Trebuchet MS', sans-serif;
 }
 img{
@@ -93,17 +90,18 @@ input{
     height: 35px;
     border-radius: 10px;
 }
+</style>
 <div class="container" id="container">
 <form action="" method="POST">
 <img src="uomaps.jpg" alt='Logo'>
-<h1>Which floor is your start point?</h1>
+<h3>Which floor is your start point?</h3>
 <select class="floor_option1" name="floor_option1" onchange="this.form.submit()">
     <option id="ground_floor" name="ground_floor" value="Ground">Ground</option>
     <option id="first_floor" name="first_floor" value="First">First</option>
     <option id="second_floor" name="second_floor" value="Second">Second</option>
 </select>
 <br>
-<h1>Where is your start point?</h1>
+<h3>Where is your start point?</h3>
 <?php
 if ($floor_start_data !== null) { 
     $stmt = $database->prepare("SELECT id,number,floor FROM Rooms WHERE floor = :floor");
@@ -121,13 +119,13 @@ if ($floor_start_data !== null) {
 <?php endif ?>
 </select>
 <br>
-<h1>Which floor is your destination?</h1>
+<h3>Which floor is your destination?</h3>
 <select class="floor_option" name="floor_option" onchange="this.form.submit()">
     <option id="ground_floor" name="ground_floor" value="Ground">Ground</option>
     <option id="first_floor" name="first_floor" value="First">First</option>
     <option id="second_floor" name="second_floor" value="Second">Second</option>
 </select>
-<h1>Select the room you want to go</h1>
+<h3>Select the room you want to go</h3>
 <?php
 if ($floor_data !== null) {
     $stmt1 = $database->prepare("SELECT id, number, floor FROM Rooms WHERE floor = :floor");
