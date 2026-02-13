@@ -49,7 +49,7 @@ img{
     border-radius: 10px;
     background-color: purple;
     width: 530px;
-    height: 610px;
+    height: 555px;
     top: 0;
     bottom:0;
     left: 0;
