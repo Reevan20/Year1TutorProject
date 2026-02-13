@@ -9,7 +9,7 @@ $grab1 = null;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
-  <link rel="stylesheet" href="pathfinder-styles.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
@@ -22,7 +22,7 @@ $grab1 = null;
 </body>
 <style>
 .container.active{
-    left: 250px;
+    left: 100px;
 }
 .search{
     width:30px;
@@ -36,6 +36,10 @@ body{
 img{
     width:180px;
     height:80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .container{
     display: flex;
@@ -43,7 +47,6 @@ img{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    position: absolute;
     background-color: purple;
     width: 530px;
     height: 610px;
@@ -52,12 +55,12 @@ img{
     left: 0;
     right: 0;
     margin: auto;
-    left: -550px;
-    transition: left 0.2s ease;
+    left: -1950px;
+    transition: left 0.1s ease;
     position:fixed;
 }
 .locate{
-    width: 100px;
+    width: 350px;
     height: 35px;
     border: 0;
     border-radius: 20px;
@@ -142,6 +145,7 @@ if ($floor_data !== null) {
 <?php endif ?>
 </select>
 <br>
+<br>
 <button type="submit" class="locate" id="locate">Locate</button>
 </form>
 </div>
@@ -159,7 +163,7 @@ if ($floor_data !== null) {
 <!-- OBJLoader -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/OBJLoader.js"></script> -->
 
-<script type="module" src="pathfinder.js"></script>
+<script type="module" src="main.js"></script>
 <script>
     const search = document.getElementById("search");
     const container = document.getElementById("container");
