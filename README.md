@@ -36,6 +36,5 @@ This is a possible table
 - office_hours??: date-time
 
 # TODO:
-- finish front page
-- add app into window on front page
-- redo assets for incorrectly scaled floors
+- redoing assets
+- split pathfinder.php into multiple files then put into index.html
