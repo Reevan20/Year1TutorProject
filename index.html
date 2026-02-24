@@ -1,31 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="landing-page-styles.css">
-    <title>Kilburn Locator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
-    <div class="content">
-        <h1>Which floor is your destination?</h1>
+  <button id="search" class="search"><i class="fas fa-search"></i></button>
+  <div id="slider">
+    <p>drag me left and right frfr</p>
 
-        <select class="floor_option" id = "floor_option">
-            <option id="ground_floor">Ground</option>
-            <option id="first_floor">First Floor</option>
-            <option id="second_floor">Second Floor</option>
-        </select>
-
-        <br>
-        <input type="text" placeholder="Room" id = "room_option">
-        <br>
-
-        <button id="locate">Locate</button>
-    </div>
-
-    <script src="submit-data.js"></script>
+  </div>
 </body>
+<script type="module" src="submit-data.js"></script>
 
-</html>
+
+<div class="container" id="container">
+  <img src="assets/uomaps.jpg" alt='Logo'>
+
+  <h3>Which floor is your start point?</h3>
+  <select id="start-floor" class="floor_option1" name="floor_option1">
+    <option id="ground_floor" name="ground_floor" value="Ground">Ground</option>
+    <option id="first_floor" name="first_floor" value="First">First</option>
+    <option id="second_floor" name="second_floor" value="Second">Second</option>
+  </select>
+
+  <br>
+  <h3>Where is your start point?</h3>
+  <input type="text" id="start-point" class="start_point" name="start" list="start-point-list">
+  <datalist id="start-point-list"></datalist>
+
+  <br>
+  <h3>Which floor is your destination?</h3>
+  <select id="dest-floor" class="floor_option" name="floor_option">
+    <option id="ground_floor" name="ground_floor" value="Ground">Ground</option>
+    <option id="first_floor" name="first_floor" value="First">First</option>
+    <option id="second_floor" name="second_floor" value="Second">Second</option>
+  </select>
+
+  <h3>Select the room you want to go</h3>
+  <input id="end-point" class="Rooms" name="room" list="end-point-list">
+  <datalist id="end-point-list"></datalist>
+
+  <br>
+  <br>
+  <button class="locate" id="locate">Locate</button>
+</div>
+</style>
+<!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script> -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
+  }
+}
+</script>
+<!-- <script src="https://unpkg.com/three@0.165.0/build/three.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script> -->
+<!-- OBJLoader -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/OBJLoader.js"></script> -->
+
+<script type="module" src="main.js"></script>

@@ -36,6 +36,17 @@ This is a possible table
 - office_hours??: date-time
 
 # TODO:
-- finish front page
-- add app into window on front page
-- redo assets for incorrectly scaled floors
+- [ ] redoing assets
+- [X] split pathfinder.php into multiple files then put into index.html
+- [X] check if anything is using corriders.obj
+- [X] check if submit.js can be merged
+- [X] add accessibilty checkbox
+
+# Future Features:
+- ads - 2
+- payed accounts
+- location sharing
+- favourited routes
+- cool graphics (custom shaders, models)
+- feedback reporting
+- before the route starts, give an overview of whole route (2D or isometric) - 1

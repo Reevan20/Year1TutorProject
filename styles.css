@@ -1,0 +1,137 @@
+  #slider {
+      position: absolute;
+      width: 85%;
+      height: 8%;
+      background-color: lightgrey;
+      left: 7.5%;
+      top: 70%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      touch-action: none;
+  }
+
+  .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      position: absolute;
+      padding: 1%;
+      background-color: white;
+      /* change these to be better for phone */
+      height: 15%;
+      width: 40em;
+  }
+
+  button {
+      width: 100px;
+      height: 35px;
+      border: 0;
+      border-radius: 20px;
+  }
+
+  button:hover {
+      background-color: aqua;
+  }
+
+  input {
+      width: 350px;
+      height: 35px;
+      border-radius: 10px;
+  }
+
+  p {
+      font-size: 2em;
+      -webkit-user-select: none;
+      user-select: none;
+
+  }
+
+  html,
+  body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      overscroll-behavior: none;
+  }
+
+  .search {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      border: 0;
+  }
+
+  body {
+      font-family: 'Trebuchet MS', sans-serif;
+  }
+
+  img {
+      width: 180px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: purple;
+      width: 530px;
+      height: 555px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      left: -1950px;
+      transition: left 0.1s ease;
+      position: fixed;
+  }
+
+  .container.active {
+      left: 100px;
+  }
+
+  .locate {
+      width: 350px;
+      height: 35px;
+      border: 0;
+      border-radius: 20px;
+  }
+
+  .floor_option {
+      width: 350px;
+      height: 35px;
+      border-radius: 10px;
+  }
+
+  .floor_option1 {
+      width: 350px;
+      height: 35px;
+      border-radius: 10px;
+  }
+
+  .start_point {
+      width: 350px;
+      height: 35px;
+      border-radius: 10px;
+  }
+
+  .Rooms {
+      width: 350px;
+      height: 35px;
+      border-radius: 10px;
+  }
