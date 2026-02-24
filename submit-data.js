@@ -52,6 +52,8 @@ const end_points = document.getElementById("end-point-list");
 const start_point = document.getElementById("start-point");
 const end_point = document.getElementById("end-point");
 
+const wheelchair = document.getElementById("wheelchair");
+
 start_floor.onchange = () => { addRooms(start_floor, start_points); start_point.value = ""; }
 end_floor.onchange = () => { addRooms(end_floor, end_points); end_point.value = ""; }
 
@@ -94,6 +96,7 @@ button.onclick = () => {
         const url = new URL(window.location);
         url.searchParams.set("origin", responses[0]);
         url.searchParams.set("target", responses[1]);
+        url.searchParams.set("wheelchair", wheelchair.checked);
         window.location.replace(url.href);
     })
 
