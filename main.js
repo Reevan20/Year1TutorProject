@@ -235,7 +235,7 @@ function initialiseSlider() {
         if (!isDragging) {
             return
         }
-        progress = startProgress + (e.clientX - startX) / 1000
+        progress = startProgress + (e.clientX - startX) / totalDistance / 20
         if (progress < 0) {
             progress = 0
         } else if (progress > 0.999) {

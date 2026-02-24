@@ -16,6 +16,7 @@ function getNode(floorOptionElement, roomOptionElement) {
 
 function addRooms(floorOptionElement, listElement) {
     const floor = floorOptionElement.value;
+    console.log(floor)
 
     let phpServer = ROOMS_PHP + "?floor=" + floor;
     let xmlhttp = new XMLHttpRequest();
