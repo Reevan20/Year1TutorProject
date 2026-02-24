@@ -1,0 +1,9 @@
+#adBanner {
+  width: 500px;
+  height: 100px;
+  object-fit: cover;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
