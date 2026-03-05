@@ -26,6 +26,10 @@
       height: 15%;
       width: 40em;
   }
+  #wheelchair {
+    padding-left: auto;
+    padding-right: auto;
+  }
 
   button {
       width: 100px;

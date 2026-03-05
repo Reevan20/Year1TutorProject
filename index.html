@@ -2,20 +2,39 @@
 
 <head>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="searchBoxStyles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
-  <button id="search" class="search"><i class="fas fa-search"></i></button>
+  <!-- <button id="search" class="search"><i class="fas fa-search"></i></button> -->
   <div id="slider">
     <p>drag me left and right frfr</p>
 
   </div>
+
+
+
+    <div id="searchBox" class="searchBox">
+      
+
+      <input type="text" class="searchBar" id="searchBar1" placeholder="Search for origin: ">
+      <input type="text" class="searchBar" id="searchBar2" placeholder="Search for destination: ">
+      <div id="searchExpand" class="searchExpand"><p id="searchArrow" class="searchArrow">></p></div>
+
+    </div>
+
+
+
+
+
+
 </body>
 <script type="module" src="submit-data.js"></script>
+<script type="module" src="searchBoxScript.js"></script>
 
 
-<div class="container" id="container">
+<!-- <div class="container" id="container">
   <img src="assets/uomaps.jpg" alt='Logo'>
 
   <h3>Which floor is your start point?</h3>
@@ -47,7 +66,7 @@
 
   <br>
   <button class="locate" id="locate">Locate</button>
-</div>
+</div> -->
 </style>
 <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script> -->
 <script type="importmap">
