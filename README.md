@@ -37,7 +37,6 @@ This is a possible table
 
 # TODO:
 - redoing assets
-- add accessibilty checkbox
 
 # Future Features:
 - ads
