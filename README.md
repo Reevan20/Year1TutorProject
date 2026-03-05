@@ -37,6 +37,7 @@ This is a possible table
 
 # TODO:
 - redoing assets
+- redo search, generic search bar + filters
 
 # Future Features:
 - ads
