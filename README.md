@@ -36,8 +36,8 @@ This is a possible table
 - office_hours??: date-time
 
 # TODO:
-- redoing assets
-- redo search, generic search bar + filters
+- finish assets
+- add "advanced search" option to new ui
 
 # Future Features:
 - ads
