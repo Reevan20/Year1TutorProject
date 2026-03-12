@@ -351,10 +351,8 @@ loadObject("assets/models/lower.obj", 0x008800, 0x00ff00, 0.3, (object) => {
     objects["lower"] = object
 });
 
-loadGLTF("assets/models/GFloor.glb", (object) => {
+loadGLTF("assets/models/ground.glb", (object) => {
     objects["ground"] = object;
-    object.position = object.position - new THREE.Vector3(-4.7, -0.7, -7.2);
-    console.log(object.position);
 });
 
 
