@@ -11,6 +11,7 @@
 	top: 10px;
 	left: 10px;
 	overflow: hidden;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .searchExpand {
@@ -30,9 +31,11 @@
 .searchArrow {
 	position: absolute;
 	text-align: center;
-	width: 100%;
-	height: 100%;
-	top: -50%;
+	width: 50%;
+	height: 50%;
+	top: 25%;
+	left: 25%;
+	/*top: -50%;*/
 	transition: 0.5s;
 }
 
@@ -46,20 +49,143 @@
 	
 }
 
+.advancedSearchOpen {
+	position: absolute;
+	width: 90px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #c4c4c4;
+	left: 430px;
+	top: 105px;
+	transition: 0.5s;
+
+}
+
+.advancedSearchText {
+	text-align: center;
+}
+
+p {
+	font-size: small;
+	/*text-align: center;*/
+	color: #676767;
+	text-shadow: 2px 2px 10px #AAAAAA;
+}
+
+.advancedSearchOpen:hover {
+	background-color: #aaaaaa;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
 #searchBar1 {
-	top: 20px;
+	top: 30px;
 }
 #searchBar2 {
 	top: 100px;
 }
 
 .searchExpand:hover {
-	animation-name: hoverColorChange;/*
-	animation-duration: 0.2s;*/
+	/*animation-name: hoverColorChange;/*
+	/*animation-duration: 0.2s;*/
 	background-color: #a1a1a1
+
 }
 
-@keyframes hoverColorChange {/*
+/*@keyframes hoverColorChange {
 	from {background-color: #d4d4d4;}
 	to {background-color: #a1a1a1}
 }*/
+
+
+.advancedOptions {
+	position: absolute;
+	left: 7.5%;
+	bottom: 10px;
+	height: 0px;
+	width: 85%;
+	background-color: #cccccc;
+	transition: 0.5s;
+	border-radius: 10px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+div {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/*.floorFilter {
+	background-color: #bbbbbb;
+	height: 10px;
+	width: 120px;
+	height: 45px;
+	transition: 0.5s;
+	border-radius: 10px;
+}
+.floorFilter:hover{
+	background-color: a5a5a5;
+}
+
+.floorFilter[open] {
+	height: 100px;
+}*/
+
+/*.startSelect {
+	position: absolute;
+	top: 15px;
+	left: 40%;
+	overflow: hidden;
+}*/
+
+.startFloorText {
+	position: absolute;
+	left: 10%;
+	top: 15px;
+}
+.targetFloorText {
+	position: absolute;
+	left: 10%;
+	top: 55px;
+}
+
+.wheelchairAcccessibleText {
+	position: absolute;
+	left: 10%;
+	top: 95px;
+}
+
+/*.filterOption {
+	display: block;
+	height: 20px;
+}*/
+.startSelect {
+	position: absolute;
+	top: 25px;
+	left: 200px;
+}
+.targetSelect {
+	position: absolute;
+	top: 65px;
+	left: 200px;
+}
+.wheelchairCheckbox {
+	position: absolute;
+	top: 95px;
+	left: 230px;
+	width: 20px;
+}
+
+.applyFilter {
+	position: absolute;
+	width: 90px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #dddddd;
+	left: 325px;
+	top: 95px;
+	transition: 0.3s;
+	text-align: center;
+
+}
+.applyFilter:hover {
+	background-color: #cccccc;
+}

@@ -20,7 +20,53 @@
 
       <input type="text" class="searchBar" id="searchBar1" placeholder="Search for origin: ">
       <input type="text" class="searchBar" id="searchBar2" placeholder="Search for destination: ">
-      <div id="searchExpand" class="searchExpand"><p id="searchArrow" class="searchArrow">></p></div>
+      <div id="searchExpand" class="searchExpand"><img id="searchArrow" class="searchArrow" src="arrow.svg"></div>
+
+      <div id="advancedOptions" class="advancedOptions">
+        <p class="startFloorText">Starting Floor:</p>
+
+
+        <select id="startSelect" class="startSelect">
+          <option value="any">Any</option>
+          <option value="Ground">Ground</option>
+          <option value="Lower First">Lower First</option>
+          <option value="First">First</option>
+          <option value="Second">Second</option>
+        </select>
+
+        <select id="targetSelect" class="targetSelect">
+          <option value="any">Any</option>
+          <option value="Ground">Ground</option>
+          <option value="Lower First">Lower First</option>
+          <option value="First">First</option>
+          <option value="Second">Second</option>
+        </select>
+
+        <input type="checkbox" class="wheelchairCheckbox" id="wheelchairCheckbox">
+
+        <div id="applyFilter" class="applyFilter"><p>Apply Filter</p></div>
+
+
+
+        <!-- <div id="startFloorFilter" class="floorFilter startSelect">
+          <div id="startFloorFilterSelected" class="selected" value="Any"><p>Any</p></div>
+          <div class="filterOptions">
+            <div class="filterOption" value="Any"><p>Any</p></div>
+            <div class="filterOption" value="Ground"><p>Ground</p></div>
+            <div class="filterOption" value="Lower First"><p>Lower First</p></div>
+            <div class="filterOption" value="First"><p>First</p></div>
+            <div class="filterOption" value="Second"><p>Second</p></div>
+          </div>
+        </div> -->
+
+        <p class="targetFloorText">Target Floor:</p>
+        <p class="wheelchairAcccessibleText">Wheelchair accessible:</p>
+        
+
+
+      </div>
+
+      <div id="advancedSearchOpen" class="advancedSearchOpen"><p class="advancedSearchText">Advanced</p></div>
 
     </div>
 
