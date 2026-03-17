@@ -259,7 +259,7 @@ function interpolate(a, b, p) {
     return [a[0] + p * dX, a[1] + p * dY, a[2] + p * dZ]
 }
 
-function walk() {
+function walk(path) {
     var currentDist = totalDistance * progress
 
     var count = 0
@@ -379,22 +379,28 @@ if (url.searchParams.get("target")) {
     var target = 2
 }
 
-try {
-    var path = aStar(origin, target)
-    drawPath(path)
-    console.log(path)
-} catch {
-    alert("unable to find path");
-    url.searchParams.set("target", 2)
-    url.searchParams.set("origin", 1)
-    url.searchParams.set("wheelchair", false)
-    window.location.replace(url.href)
+export function initialisePath(origin, target) {
+    try {
+        var path = aStar(origin, target)
+        drawPath(path)
+        console.log("Path: " + path)
+        localStorage.setItem("path", JSON.stringify(path))
+    } catch {
+        alert("unable to find path");
+        url.searchParams.set("target", 2)
+        url.searchParams.set("origin", 1)
+        url.searchParams.set("wheelchair", false)
 
-    // drawPath(path)
+        var path = aStar(1, 2)
+        drawPath(path)
+        console.log("Path: " + path)
+        localStorage.setItem("path", JSON.stringify(path))
+        // window.location.replace(url.href)
+        // drawPath(path)
+    }
 }
 
-
-
+initialisePath(origin, target);
 
 function animate() {
     requestAnimationFrame(animate);
@@ -410,11 +416,11 @@ function animate() {
     // adjustOpacity(object_ground, 0, user.position.y)
     // adjustOpacity(object_stairs, 6, user.position.y)
     // adjustOpacity(object_lower, 12, user.position.y)
-    
-    walk()
+
+    walk(JSON.parse(localStorage.getItem("path")));
     moveCamera()
-    
-    
+
+
     renderer.render(scene, camera);
 }
 animate();

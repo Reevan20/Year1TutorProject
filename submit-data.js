@@ -1,3 +1,5 @@
+import { initialisePath } from "./main.js";
+
 // replace this with the correct names
 const NODE_PHP = "get_node.php"
 const ROOMS_PHP = "get_rooms.php"
@@ -97,7 +99,12 @@ button.onclick = () => {
         url.searchParams.set("origin", responses[0]);
         url.searchParams.set("target", responses[1]);
         url.searchParams.set("wheelchair", wheelchair.checked);
-        window.location.replace(url.href);
+
+        initialisePath(responses[0], responses[1]);
+        let searchButton = document.getElementById("search");
+        searchButton.click();
+
+        //window.location.replace(url.href);
     })
 
 }
