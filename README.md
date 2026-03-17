@@ -37,11 +37,8 @@ This is a possible table
 
 # TODO:
 - finish assets
-
-## Next week:
 - map nodes
 - add nodes to db
-- add textures
 
 # Future Features:
 - ads
