@@ -37,8 +37,6 @@ This is a possible table
 
 # TODO:
 - finish assets
-- add "advanced search" option to new ui
-- change pathing program to rerun on search
 
 ## Next week:
 - map nodes
