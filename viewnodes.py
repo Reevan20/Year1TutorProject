@@ -1,4 +1,4 @@
-obj = "assets/models/nodes_lower.obj"
+obj = "assets/aligned_models/nodes/second_nodes.obj"
 
 
 with open(obj, "r") as f:
@@ -6,7 +6,7 @@ with open(obj, "r") as f:
 
 nodes = {}
 id = 1
-idOffset = 40
+idOffset = 273
 for line in lines:
     words = line.split()
     if len(words) == 0:
@@ -38,7 +38,7 @@ def add(d, increment=5):
 
 print(add(nodes, increment=idOffset))
 
-print(nodes)
+# print(nodes)
 print(len(nodes) + idOffset)
 
 
