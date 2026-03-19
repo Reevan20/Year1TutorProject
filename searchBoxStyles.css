@@ -60,6 +60,26 @@
 	transition: 0.5s;
 
 }
+.suggestBox {
+	z-index: 100;
+	height: 50px;
+	width: 100%;
+	padding: 0;
+	margin: 0px;
+	background-color: white;
+	display: flex;
+	align-items: center;
+
+}
+.suggestionText {
+	/*margin: 0;*/
+	/*margin: auto;*/
+	/*line-height: 100%;*/
+	color: #555555;
+}
+b {
+	color: #111111;
+}
 
 .advancedSearchText {
 	text-align: center;
@@ -96,6 +116,20 @@ p {
 	from {background-color: #d4d4d4;}
 	to {background-color: #a1a1a1}
 }*/
+
+.suggestionsContainer1 {
+	position: absolute;
+	width: 400px;
+	top: 90px;
+	left: 20px;
+}
+
+.suggestionsContainer2 {
+	position: absolute;
+	width: 400px;
+	top: 160px;
+	left: 20px;
+}
 
 
 .advancedOptions {

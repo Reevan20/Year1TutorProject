@@ -6,8 +6,36 @@ var searchBar1 = document.getElementById("searchBar1")
 var searchBar2 = document.getElementById("searchBar2")
 var advancedSearchOpen = document.getElementById("advancedSearchOpen")
 var advancedOptions = document.getElementById("advancedOptions")
+
+var suggestionsContainer1 = document.getElementById("suggestionsContainer1")
+var suggestionsContainer2 = document.getElementById("suggestionsContainer2")
+
+var startFilter = document.getElementById("startSelect")
+var targetFilter = document.getElementById("targetSelect")
+
+
+var url = new URL(window.location)
+
 // var startFloorFilterButton = document.getElementById("startFloorFilter")
 var advancedOpen = false
+
+var rooms = {}
+
+async function fetchRooms() {
+	var response = await fetch("/fetch_rooms.php")
+	var data = await response.json()
+
+	rooms = data
+}
+fetchRooms()
+
+// fetch("/fetch_rooms.php").then(response => {var rooms = response.json()})
+
+
+
+
+
+// var options = ["antimony","arsenic","aluminum","selenium","hydrogen","oxygen","nitrogen","rhenium"]
 
 function expand() {
 	searchOpen = !searchOpen
@@ -48,6 +76,89 @@ function expandAdvanced() {
 	}
 }
 
+
+function suggest1() {
+	console.log(rooms)
+	var search = searchBar1.value.toLowerCase()
+	// var searchContainer = document.getElementById("searchContainer")
+	suggestionsContainer1.innerHTML = ""
+	suggestionsContainer2.innerHTML = ""
+	if (search == "") {
+		return
+	}
+	var foundNum = 0
+	console.log(startFilter.value.toLowerCase())
+
+	for (var room of rooms) {
+	console.log(room["floor"])
+
+		if (room["floor"].toLowerCase() == startFilter.value.toLowerCase() || startFilter.value.toLowerCase() == "any") {
+				if (foundNum >= 7) {
+					break
+				}
+				if (room["number"].toLowerCase().startsWith(search)) {
+					foundNum += 1
+					var suggestBox = document.createElement("div")
+					suggestBox.classList.add("suggestBox")
+					suggestBox.setAttribute("value",room["number"])
+					suggestBox.innerHTML = "<p class='suggestionText'><b>"+room["number"].substring(0,search.length)+"</b>"+room["number"].substring(search.length,room["number"].length)+"</p>"
+					suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value")}
+					suggestionsContainer1.appendChild(suggestBox)
+				}
+		}
+
+
+		// console.log(room["number"])
+		
+		
+
+	}
+}
+
+
+function suggest2() {
+	var search = searchBar2.value.toLowerCase()
+	// var searchContainer = document.getElementById("searchContainer")
+	suggestionsContainer1.innerHTML = ""
+	suggestionsContainer2.innerHTML = ""
+	if (search == "") {
+		return
+	}
+	var foundNum = 0
+	for (var room of rooms) {
+		console.log(room["number"])
+		if (foundNum >= 7) {
+			break
+		}
+		var roomName = room["number"].toLowerCase()
+		if (roomName.includes(search)) {
+			var startIndex = roomName.indexOf(search)
+			foundNum += 1
+			var suggestBox = document.createElement("div")
+			suggestBox.classList.add("suggestBox")
+			suggestBox.setAttribute("value",room["number"])
+			suggestBox.innerHTML = "<p class='suggestionText'><b>"+room["number"].substring(0,search.length)+"</b>"+room["number"].substring(search.length,room["number"].length)+"</p>"
+			// suggestBox.innerHTML = "<p class='suggestionText'>"+ roomName.substring(0, startIndex) + "<b>"+roomName.substring(startIndex, search.length) +"</b>"+roomName.substring(startIndex + search.length, roomName.length) +"</p>"
+			
+			suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value")}
+			suggestionsContainer2.appendChild(suggestBox)
+		}
+		
+
+	}
+}
+
+function hideSuggestions() {
+	suggestionsContainer1.innerHTML = ""
+	suggestionsContainer2.innerHTML = ""
+}
+
+function initSearch() {
+	if (url.searchParams.get("origin") != null) {
+		searchBar1.value = url.searchParams.get("origin")
+	}
+}
+
 // var startFilterOpen = false
 // function expandStartFilter() {
 // 	console.log("click")
@@ -63,6 +174,14 @@ function expandAdvanced() {
 
 expandButton.addEventListener("click", expand);
 advancedSearchOpen.addEventListener("click", expandAdvanced);
+
+
+searchBar1.addEventListener("keyup", suggest1)
+searchBar2.addEventListener("keyup", suggest2)
+
+document.body.addEventListener("click", hideSuggestions)
+document.body.onload=initSearch
+
 // startFloorFilterButton.addEventListener("click", expandStartFilter)
 
 
