@@ -7,7 +7,7 @@ $database = new SQLite3('pathing_app.db');
 // node - node id
 
 $rooms = [];
-$stmt = $database->prepare("SELECT id, number, floor, type FROM Rooms");
+$stmt = $database->prepare("SELECT id, name, floor, type FROM Rooms");
 $results = $stmt->execute();
 
 while ($row = $results->fetchArray(SQLITE3_ASSOC)){
