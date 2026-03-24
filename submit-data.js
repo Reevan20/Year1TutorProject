@@ -1,3 +1,5 @@
+import { initialisePath } from "./main.js";
+
 // replace this with the correct names
 const NODE_PHP = "get_node.php"
 const ROOMS_PHP = "get_rooms.php"
@@ -16,6 +18,7 @@ function getNode(floorOptionElement, roomOptionElement) {
 
 function addRooms(floorOptionElement, listElement) {
     const floor = floorOptionElement.value;
+    console.log(floor)
 
     let phpServer = ROOMS_PHP + "?floor=" + floor;
     let xmlhttp = new XMLHttpRequest();
@@ -50,6 +53,8 @@ const end_points = document.getElementById("end-point-list");
 
 const start_point = document.getElementById("start-point");
 const end_point = document.getElementById("end-point");
+
+const wheelchair = document.getElementById("wheelchair");
 
 start_floor.onchange = () => { addRooms(start_floor, start_points); start_point.value = ""; }
 end_floor.onchange = () => { addRooms(end_floor, end_points); end_point.value = ""; }
@@ -93,7 +98,13 @@ button.onclick = () => {
         const url = new URL(window.location);
         url.searchParams.set("origin", responses[0]);
         url.searchParams.set("target", responses[1]);
-        window.location.replace(url.href);
+        url.searchParams.set("wheelchair", wheelchair.checked);
+
+        initialisePath(responses[0], responses[1]);
+        let searchButton = document.getElementById("search");
+        searchButton.click();
+
+        //window.location.replace(url.href);
     })
 
 }

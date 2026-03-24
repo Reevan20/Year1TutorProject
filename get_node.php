@@ -11,6 +11,7 @@ if ($floor !== null && $room !== null) {
     $stmt->bindValue(':room', $room, SQLITE3_TEXT);
     $results = $stmt->execute();
 
+
     echo $results->fetchArray()["node"];
 
 }

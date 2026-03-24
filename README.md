@@ -36,11 +36,9 @@ This is a possible table
 - office_hours??: date-time
 
 # TODO:
-- redoing assets
-- split pathfinder.php into multiple files then put into index.html
-- check if anything is using corriders.obj
-- check if submit.js can be merged
-- add accessibilty checkbox
+- finish assets
+- map nodes
+- add nodes to db
 
 # Future Features:
 - ads
