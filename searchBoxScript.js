@@ -93,22 +93,25 @@ function suggest1() {
 	console.log(room["floor"])
 
 		if (room["floor"].toLowerCase() == startFilter.value.toLowerCase() || startFilter.value.toLowerCase() == "any") {
-				if (foundNum >= 7) {
-					break
-				}
-				if (room["number"].toLowerCase().startsWith(search)) {
-					foundNum += 1
-					var suggestBox = document.createElement("div")
-					suggestBox.classList.add("suggestBox")
-					suggestBox.setAttribute("value",room["number"])
-					suggestBox.innerHTML = "<p class='suggestionText'><b>"+room["number"].substring(0,search.length)+"</b>"+room["number"].substring(search.length,room["number"].length)+"</p>"
-					suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value")}
-					suggestionsContainer1.appendChild(suggestBox)
-				}
+			if (foundNum >= 7) {
+				break
+			}
+			var roomName = room["name"]
+			// if (room["name"].toLowerCase().startsWith(search)) {
+			if (roomName.toLowerCase().includes(search)) {
+				foundNum += 1
+				var pos = roomName.toLowerCase().indexOf(search)
+				var suggestBox = document.createElement("div")
+				suggestBox.classList.add("suggestBox")
+				suggestBox.setAttribute("value",roomName)
+				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
+				suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value")}
+				suggestionsContainer1.appendChild(suggestBox)
+			}
 		}
 
 
-		// console.log(room["number"])
+		// console.log(room["name"])
 		
 		
 
@@ -126,23 +129,29 @@ function suggest2() {
 	}
 	var foundNum = 0
 	for (var room of rooms) {
-		console.log(room["number"])
-		if (foundNum >= 7) {
-			break
+	console.log(room["floor"])
+
+		if (room["floor"].toLowerCase() == targetFilter.value.toLowerCase() || targetFilter.value.toLowerCase() == "any") {
+			if (foundNum >= 7) {
+				break
+			}
+			var roomName = room["name"]
+			// if (room["name"].toLowerCase().startsWith(search)) {
+			if (roomName.toLowerCase().includes(search)) {
+				foundNum += 1
+				var pos = roomName.toLowerCase().indexOf(search)
+				var suggestBox = document.createElement("div")
+				suggestBox.classList.add("suggestBox")
+				suggestBox.setAttribute("value",roomName)
+				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
+				suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value")}
+				suggestionsContainer2.appendChild(suggestBox)
+			}
 		}
-		var roomName = room["number"].toLowerCase()
-		if (roomName.includes(search)) {
-			var startIndex = roomName.indexOf(search)
-			foundNum += 1
-			var suggestBox = document.createElement("div")
-			suggestBox.classList.add("suggestBox")
-			suggestBox.setAttribute("value",room["number"])
-			suggestBox.innerHTML = "<p class='suggestionText'><b>"+room["number"].substring(0,search.length)+"</b>"+room["number"].substring(search.length,room["number"].length)+"</p>"
-			// suggestBox.innerHTML = "<p class='suggestionText'>"+ roomName.substring(0, startIndex) + "<b>"+roomName.substring(startIndex, search.length) +"</b>"+roomName.substring(startIndex + search.length, roomName.length) +"</p>"
-			
-			suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value")}
-			suggestionsContainer2.appendChild(suggestBox)
-		}
+
+
+		// console.log(room["name"])
+		
 		
 
 	}

@@ -439,8 +439,8 @@ function animate() {
             adjustOpacity(objects[o], objectHeights[o], user.position.y)
         }
     }
-    console.log("y")
-    console.log(user.position.y)
+    // console.log("y")
+    // console.log(user.position.y)
     // adjustOpacity(object_base, 0, user.position.y)
     // adjustOpacity(object_ground, 0, user.position.y)
     // adjustOpacity(object_stairs, 6, user.position.y)
