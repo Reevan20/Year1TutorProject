@@ -47,3 +47,5 @@ This is a possible table
 - cool graphics (custom shaders, models)
 - feedback reporting
 - before the route starts, give an overview of whole route (2D or isometric)
+
+"Bee (Low Poly)" (https://skfb.ly/o9XvJ) by EsiHere is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
