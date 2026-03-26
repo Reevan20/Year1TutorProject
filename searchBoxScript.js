@@ -13,6 +13,8 @@ var suggestionsContainer2 = document.getElementById("suggestionsContainer2")
 var startFilter = document.getElementById("startSelect")
 var targetFilter = document.getElementById("targetSelect")
 
+var wheelchairCheckbox = document.getElementById("wheelchairCheckbox")
+
 
 var url = new URL(window.location)
 
@@ -26,8 +28,9 @@ async function fetchRooms() {
 	var data = await response.json()
 
 	rooms = data
+	initSearch()
 }
-fetchRooms()
+
 
 // fetch("/fetch_rooms.php").then(response => {var rooms = response.json()})
 
@@ -105,7 +108,7 @@ function suggest1() {
 				suggestBox.classList.add("suggestBox")
 				suggestBox.setAttribute("value",roomName)
 				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value")}
+				suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value");searchBar1.validVal = searchBar1.value;checkStart()}
 				suggestionsContainer1.appendChild(suggestBox)
 			}
 		}
@@ -144,7 +147,7 @@ function suggest2() {
 				suggestBox.classList.add("suggestBox")
 				suggestBox.setAttribute("value",roomName)
 				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value")}
+				suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value");searchBar2.validVal = searchBar2.value;checkStart()}
 				suggestionsContainer2.appendChild(suggestBox)
 			}
 		}
@@ -157,6 +160,38 @@ function suggest2() {
 	}
 }
 
+import {begin} from "./main.js"
+
+function checkStart() {
+	if (searchBar1.validVal && searchBar2.validVal) {
+
+		console.log(rooms)
+		for (var n of rooms) {
+			if (n["name"] == searchBar1.validVal) {
+				var a = n["node"]
+				break
+			}
+		}
+		for (var n of rooms) {
+			if (n["name"] == searchBar2.validVal) {
+				var b = n["node"]
+				break
+			}
+		}
+
+		var wheelchair = wheelchairCheckbox.checked
+
+
+		console.log("going from" + a)
+		console.log("to" + b)
+
+		begin(a, b, wheelchair)
+	}
+}
+
+
+
+
 function hideSuggestions() {
 	suggestionsContainer1.innerHTML = ""
 	suggestionsContainer2.innerHTML = ""
@@ -164,7 +199,28 @@ function hideSuggestions() {
 
 function initSearch() {
 	if (url.searchParams.get("origin") != null) {
-		searchBar1.value = url.searchParams.get("origin")
+		for (var room of rooms) {
+			if (room.node == url.searchParams.get("origin")) {
+				searchBar1.value = room.name
+				searchBar1.validVal = room.name
+				break
+			}
+		}
+	}
+	if (url.searchParams.get("target") != null) {
+		for (var room of rooms) {
+			if (room.node == url.searchParams.get("target")) {
+				searchBar2.value = room.name
+				searchBar2.validVal = room.name
+				break
+			}
+		}
+	}
+
+	console.log(wheelchairCheckbox)
+	console.log(url.searchParams.get("wheelchair"))
+	if (url.searchParams.get("wheelchair") != null) {
+		wheelchairCheckbox.checked = url.searchParams.get("wheelchair") == "true"
 	}
 }
 
@@ -188,8 +244,10 @@ advancedSearchOpen.addEventListener("click", expandAdvanced);
 searchBar1.addEventListener("keyup", suggest1)
 searchBar2.addEventListener("keyup", suggest2)
 
+wheelchairCheckbox.addEventListener("change", checkStart)
+
 document.body.addEventListener("click", hideSuggestions)
-document.body.onload=initSearch
+document.body.onload=fetchRooms
 
 // startFloorFilterButton.addEventListener("click", expandStartFilter)
 

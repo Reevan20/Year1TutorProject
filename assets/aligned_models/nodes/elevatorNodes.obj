@@ -1,0 +1,11 @@
+# Blender 4.5.3 LTS
+# www.blender.org
+mtllib elevatorNodes.mtl
+o elevatorNodes
+v -20.824715 0.928574 -42.292179
+v -20.824715 2.206754 -42.292179
+v -20.824715 4.000814 -42.292179
+v -20.824715 5.782595 -42.292179
+l 1 2
+l 2 3
+l 3 4
