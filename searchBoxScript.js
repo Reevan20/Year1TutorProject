@@ -24,7 +24,7 @@ var advancedOpen = false
 var rooms = {}
 
 async function fetchRooms() {
-	var response = await fetch("/fetch_rooms.php")
+	var response = await fetch("fetch_rooms.php")
 	var data = await response.json()
 
 	rooms = data
