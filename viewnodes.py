@@ -6,7 +6,7 @@ with open(obj, "r") as f:
 
 nodes = {}
 id = 1
-idOffset = 524
+idOffset = 527
 for line in lines:
     words = line.split()
     if len(words) == 0:
@@ -42,33 +42,33 @@ print(add(nodes, increment=idOffset))
 print(len(nodes) + idOffset)
 
 
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
-
-# Example adjacency list
-graph = nodes
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-# Plot nodes
-for node, data in graph.items():
-    x, y, z = data['position']
-    ax.scatter(x, y, z, color='blue', s=50)
-    ax.text(x, y, z, node, fontsize=10, color='red')  # optional: label nodes
-
-# Plot edges
-for node, data in graph.items():
-    x1, y1, z1 = data['position']
-    for neighbor in data['connections']:
-        x2, y2, z2 = graph[neighbor]['position']
-        ax.plot([x1, x2], [y1, y2], [z1, z2], color='black')
-
-# Labels
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-ax.set_title('3D Graph from Adjacency List')
-
-plt.show()
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# import numpy as np
+#
+# # Example adjacency list
+# graph = nodes
+#
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+#
+# # Plot nodes
+# for node, data in graph.items():
+#     x, y, z = data['position']
+#     ax.scatter(x, y, z, color='blue', s=50)
+#     ax.text(x, y, z, node, fontsize=10, color='red')  # optional: label nodes
+#
+# # Plot edges
+# for node, data in graph.items():
+#     x1, y1, z1 = data['position']
+#     for neighbor in data['connections']:
+#         x2, y2, z2 = graph[neighbor]['position']
+#         ax.plot([x1, x2], [y1, y2], [z1, z2], color='black')
+#
+# # Labels
+# ax.set_xlabel('X')
+# ax.set_ylabel('Y')
+# ax.set_zlabel('Z')
+# ax.set_title('3D Graph from Adjacency List')
+#
+# plt.show()
