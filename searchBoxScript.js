@@ -265,7 +265,21 @@ searchBar2.addEventListener("keyup", suggest2)
 wheelchairCheckbox.addEventListener("change", checkStart)
 
 document.body.addEventListener("click", hideSuggestions)
-document.body.onload=fetchRooms
+document.body.onload=function() {
+	container.style.transition = "0s"
+	searchArrow.style.transition = "0s"
+	searchBar1.style.transition = "0s"
+	searchBar2.style.transition = "0s"
+	expand()
+	setTimeout(function() {
+		container.style.transition = "0.5s"
+		searchArrow.style.transition = "0.5s"
+		searchBar1.style.transition = "0.5s"
+		searchBar2.style.transition = "0.5s"
+	}, 500)
+	
+	fetchRooms()
+}
 
 // startFloorFilterButton.addEventListener("click", expandStartFilter)
 
