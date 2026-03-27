@@ -29,7 +29,38 @@ var nodes_lower_missing = {'532': {'position': [-6.749486, 1.999983, 2.514], 'co
 
 var nodes = { ...nodes_ground, ...nodes_lower, ...nodes_first, ...nodes_second , ...nodes_elevator, ...nodes_lower_missing}
 
-if (!location.wheelchair) {
+var url = new URL(window.location)
+if (url.searchParams.get("origin")) {
+    var origin = url.searchParams.get("origin")
+} else {
+    var origin = 1
+}
+if (url.searchParams.get("target")) {
+    var target = url.searchParams.get("target")
+} else {
+    var target = 2
+}
+if (url.searchParams.get("wheelchair")) {
+    var wheelchair = url.searchParams.get("wheelchair")
+} else {
+    var wheelchair = false
+}
+
+if (location.a) {
+    origin = location.a
+}
+if (location.b) {
+    target = location.b
+}
+if (location.wheelchair) {
+    wheelchair = location.wheelchair
+}
+
+console.log("wheelchair "+wheelchair    )
+
+
+if (!wheelchair) {
+    console.log("connecting stairs")
     // ground to lower
     connect(82, 188) // back left stairs
 
@@ -52,10 +83,10 @@ if (!location.wheelchair) {
     connect(213, 278) //??
 }
 // elevator
-connect(528, 82) // ground to elevator
-connect(529, 534) // lower
+connect(528, 79) // ground to elevator
+connect(531, 534) // lower
 connect(530, 260) // first
-connect(531, 352) // second
+connect(529, 352) // second
 
 // lower missing nodes
 connect(111, 532) // near front stairs
@@ -73,12 +104,12 @@ async function loadLabels(nodes) {
     for (var room of data) {
         // console.log(room)
         // console.log(nodes[room["node"]])
-        console.log(room["node"])
+        // console.log(room["node"])
         if (nodes[room["node"]] != null) {
             nodes[room["node"]]["labels"].push(room["name"])
             var pos = nodes[room["node"]]["position"]
             createLabel(room["name"], new THREE.Vector3(pos[0],pos[1],pos[2]))
-            console.log("creating label "+room["name"]+" at "+nodes[room["node"]]["position"])
+            // console.log("creating label "+room["name"]+" at "+nodes[room["node"]]["position"])
         }
         
     }
@@ -166,7 +197,7 @@ function drawNodes() {
         nodeCube.position.z = nodes[n].position[2]
         nodeCubes.push(nodeCube)
         scene.add(nodeCube)
-        // createLabel(n, nodeCube.position)
+        createLabel(n, nodeCube.position)
     }
 }
 
@@ -523,6 +554,14 @@ loadGLTF("assets/aligned_models/glb/ground.glb", (object) => {
 
 loadGLTF("assets/aligned_models/glb/elevator.glb", (object) => {
     objects["elevator"] = object;
+    objects["elevator"].traverse((child) => {
+        if (child.isMesh) {
+            child.material.transparent = true;
+            child.material.opacity = 0.7;
+            child.material.needsUpdate = true;
+        }
+    });
+    // objects["elevator"].opacity = 0.5
 });
 
 await loadLabels(nodes)
@@ -535,32 +574,7 @@ initialiseSlider()
 
 
 
-var url = new URL(window.location)
-if (url.searchParams.get("origin")) {
-    var origin = url.searchParams.get("origin")
-} else {
-    var origin = 1
-}
-if (url.searchParams.get("target")) {
-    var target = url.searchParams.get("target")
-} else {
-    var target = 2
-}
-if (url.searchParams.get("wheelchair")) {
-    var wheelchair = url.searchParams.get("wheelchair")
-} else {
-    var wheelchair = false
-}
 
-if (location.a) {
-    origin = location.a
-}
-if (location.b) {
-    target = location.b
-}
-if (location.wheelchair) {
-    wheelchair = location.wheelchair
-}
 
 try {
     var path = aStar(origin, target)
@@ -653,7 +667,7 @@ export function begin(a, b, wheelchair) {
     url.searchParams.set("target", b)
     url.searchParams.set("wheelchair", wheelchair)
     window.location.replace(url.href)
-    main()
+    // main()
 }
 
 main()
