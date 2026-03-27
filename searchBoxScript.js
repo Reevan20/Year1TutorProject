@@ -41,17 +41,27 @@ async function fetchRooms() {
 // var options = ["antimony","arsenic","aluminum","selenium","hydrogen","oxygen","nitrogen","rhenium"]
 
 function expand() {
+	var width = window.innerWidth
+
 	searchOpen = !searchOpen
 	advancedOpen = false
 	advancedOptions.style.height = "0px"
 	advancedOptions.style.opacity = "0"
 	if (searchOpen) {
-		container.style.width = "550px"
+		//start shrinking if width-20 < 550
+		container.style.width = Math.min(550,width - 20)
 		container.style.height = "180px"
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
 		searchBar1.style.opacity = "1"
 		searchBar2.style.opacity = "1"
+
+
+		searchBar1.style.width = Math.min(400, width - 160)
+		searchBar2.style.width = Math.min(400, width - 160)
+		advancedSearchOpen.style.left = 430 - Math.max(0, 550-(width-20))
+
+
 
 	} else {
 		container.style.width = "50px"
@@ -66,6 +76,8 @@ function expand() {
 }
 
 function expandAdvanced() {
+	var width = window.innerWidth
+
 	advancedOpen = !advancedOpen
 	if (advancedOpen) {
 		container.style.height = "320px"
