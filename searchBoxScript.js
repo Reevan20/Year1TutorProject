@@ -37,7 +37,7 @@ async function fetchRooms() {
 
 
 
-
+const MAX_SIZE = 600
 // var options = ["antimony","arsenic","aluminum","selenium","hydrogen","oxygen","nitrogen","rhenium"]
 
 function expand() {
@@ -45,25 +45,29 @@ function expand() {
 	advancedOpen = false
 	advancedOptions.style.height = "0px"
 	advancedOptions.style.opacity = "0"
-	const MAX_SIZE = 600
-	let mobileWidth = window.innerWidth < MAX_SIZE;
+	const mobileWidth = window.innerWidth < MAX_SIZE;
+
 	if (searchOpen) {
-		container.style.width = Math.min(MAX_SIZE, window.innerWidth - 20) + "px";
-		container.style.height = "80%"
-		searchBar1.style.width = "80%"
-		searchBar2.style.width = "80%"
-		searchBar2.style.height = "10%"
-		searchBar2.style.height = "10%"
-		advancedSearchOpen.style.right = "50px"
 		if (mobileWidth) {
-			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + 100 + "px";
+			advancedSearchOpen.style.left = container.getBoundingClientRect().left + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height + 10 + "px";
+			container.style.width = window.innerWidth - 20 + "px";
+			container.style.height = "35%";
+
 		}
-		else{
+		else {
 			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + "px";
 			advancedSearchOpen.style.left = searchBar2.getBoundingClientRect().right + 75 + "px";
-			console.log(advancedSearchOpen.style.left);
-			console.log(container.getBoundingClientRect().width- advancedSearchOpen.getBoundingClientRect().width + "px")
+			container.style.width = MAX_SIZE + "px";
+			container.style.height = "180px";
+
 		}
+
+
+		searchBar1.style.width = "80%"
+		searchBar2.style.width = "80%"
+		searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
+		searchBar2.style.height = searchBar1.style.height;
 
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
@@ -84,14 +88,33 @@ function expand() {
 
 function expandAdvanced() {
 	advancedOpen = !advancedOpen
+
+	const mobileWidth = window.innerWidth < MAX_SIZE;
+
 	if (advancedOpen) {
-		container.style.height = "50%"
-		advancedOptions.style.height = "50%"
-		advancedOptions.style.opacity = "100"
+		if (mobileWidth) {
+			container.style.height = "80%";
+			advancedOptions.style.top = advancedSearchOpen.getBoundingClientRect().bottom + 20 + "px";
+			advancedOptions.style.opacity = "100"
+			advancedOptions.style.height = "50%"
+
+		} else {
+			container.style.height = "50%"
+			advancedOptions.style.height = "50%"
+			advancedOptions.style.opacity = "100"
+		}
+
 	} else {
-		container.style.height = "180px"
-		advancedOptions.style.height = "0px"
-		advancedOptions.style.opacity = "0"
+		if (mobileWidth) {
+			advancedOptions.style.height = "0px"
+			advancedOptions.style.opacity = "0"
+			container.style.height = "35%"
+		}
+		else {
+			container.style.height = "180px"
+			advancedOptions.style.height = "0px"
+			advancedOptions.style.opacity = "0"
+		}
 
 	}
 }
