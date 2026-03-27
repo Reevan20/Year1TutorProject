@@ -108,7 +108,10 @@ function suggest1() {
 				suggestBox.classList.add("suggestBox")
 				suggestBox.setAttribute("value",roomName)
 				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value");searchBar1.validVal = searchBar1.value;checkStart()}
+				suggestBox.addEventListener("click", function() {
+					searchBar1.value = event.currentTarget.getAttribute("value")
+					searchBar1.validVal = searchBar1.value;checkStart()
+				})
 				suggestionsContainer1.appendChild(suggestBox)
 			}
 		}
@@ -147,7 +150,10 @@ function suggest2() {
 				suggestBox.classList.add("suggestBox")
 				suggestBox.setAttribute("value",roomName)
 				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value");searchBar2.validVal = searchBar2.value;checkStart()}
+				suggestBox.addEventListener("click", function() {
+					searchBar2.value = event.currentTarget.getAttribute("value")
+					searchBar2.validVal = searchBar2.value;checkStart()
+				})
 				suggestionsContainer2.appendChild(suggestBox)
 			}
 		}
