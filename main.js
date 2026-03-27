@@ -41,7 +41,7 @@ if (url.searchParams.get("target")) {
     var target = 2
 }
 if (url.searchParams.get("wheelchair")) {
-    var wheelchair = url.searchParams.get("wheelchair")
+    var wheelchair = url.searchParams.get("wheelchair") == "true"
 } else {
     var wheelchair = false
 }
@@ -56,7 +56,7 @@ if (location.wheelchair) {
     wheelchair = location.wheelchair
 }
 
-console.log("wheelchair "+wheelchair    )
+console.log("wheelchair "+wheelchair)
 
 
 if (!wheelchair) {
@@ -428,8 +428,8 @@ function walk() {
         if (Math.abs(angle1-2*Math.PI) < 0.01 & angle2 < Math.PI) {
             angle1 = 0
         }
-        if (angle2 < angle1) {
-            // angle2 += 2*Math.PI
+        if (angle1 > Math.PI & angle2 < Math.PI) {
+            angle1 -= 2*Math.PI
         }
         // console.log("angle1 "+angle1/Math.PI*180+" angle2 "+angle2/Math.PI*180)
         user.rotation.y = angle1*(1-betweenProgress) + angle2*(betweenProgress);
