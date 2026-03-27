@@ -45,15 +45,26 @@ function expand() {
 	advancedOpen = false
 	advancedOptions.style.height = "0px"
 	advancedOptions.style.opacity = "0"
+	const MAX_SIZE = 600
+	let mobileWidth = window.innerWidth < MAX_SIZE;
 	if (searchOpen) {
-		container.style.width = "100%"
+		container.style.width = Math.min(MAX_SIZE, window.innerWidth - 20) + "px";
 		container.style.height = "80%"
 		searchBar1.style.width = "80%"
 		searchBar2.style.width = "80%"
 		searchBar2.style.height = "10%"
 		searchBar2.style.height = "10%"
-		advancedSearchOpen.style.left = "150px"
-		advancedSearchOpen.style.bottom = "550px"
+		advancedSearchOpen.style.right = "50px"
+		if (mobileWidth) {
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + 100 + "px";
+		}
+		else{
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + "px";
+			advancedSearchOpen.style.left = searchBar2.getBoundingClientRect().right + 75 + "px";
+			console.log(advancedSearchOpen.style.left);
+			console.log(container.getBoundingClientRect().width- advancedSearchOpen.getBoundingClientRect().width + "px")
+		}
+
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
 		searchBar1.style.opacity = "1"
@@ -99,7 +110,7 @@ function suggest1() {
 	console.log(startFilter.value.toLowerCase())
 
 	for (var room of rooms) {
-	console.log(room["floor"])
+		console.log(room["floor"])
 
 		if (room["floor"].toLowerCase() == startFilter.value.toLowerCase() || startFilter.value.toLowerCase() == "any") {
 			if (foundNum >= 7) {
@@ -112,17 +123,17 @@ function suggest1() {
 				var pos = roomName.toLowerCase().indexOf(search)
 				var suggestBox = document.createElement("div")
 				suggestBox.classList.add("suggestBox")
-				suggestBox.setAttribute("value",roomName)
-				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar1.value = event.srcElement.getAttribute("value");searchBar1.validVal = searchBar1.value;checkStart()}
+				suggestBox.setAttribute("value", roomName)
+				suggestBox.innerHTML = "<p class='suggestionText'>" + roomName.substring(0, pos) + "<b>" + roomName.substring(pos, pos + search.length) + "</b>" + roomName.substring(pos + search.length, roomName.length) + "</p>"
+				suggestBox.onclick = function (event) { searchBar1.value = event.srcElement.getAttribute("value"); searchBar1.validVal = searchBar1.value; checkStart() }
 				suggestionsContainer1.appendChild(suggestBox)
 			}
 		}
 
 
 		// console.log(room["name"])
-		
-		
+
+
 
 	}
 }
@@ -138,7 +149,7 @@ function suggest2() {
 	}
 	var foundNum = 0
 	for (var room of rooms) {
-	console.log(room["floor"])
+		console.log(room["floor"])
 
 		if (room["floor"].toLowerCase() == targetFilter.value.toLowerCase() || targetFilter.value.toLowerCase() == "any") {
 			if (foundNum >= 7) {
@@ -151,22 +162,22 @@ function suggest2() {
 				var pos = roomName.toLowerCase().indexOf(search)
 				var suggestBox = document.createElement("div")
 				suggestBox.classList.add("suggestBox")
-				suggestBox.setAttribute("value",roomName)
-				suggestBox.innerHTML = "<p class='suggestionText'>"+roomName.substring(0,pos)+"<b>"+roomName.substring(pos,pos+search.length)+"</b>"+roomName.substring(pos+search.length, roomName.length)+"</p>"
-				suggestBox.onclick = function(event) {searchBar2.value = event.srcElement.getAttribute("value");searchBar2.validVal = searchBar2.value;checkStart()}
+				suggestBox.setAttribute("value", roomName)
+				suggestBox.innerHTML = "<p class='suggestionText'>" + roomName.substring(0, pos) + "<b>" + roomName.substring(pos, pos + search.length) + "</b>" + roomName.substring(pos + search.length, roomName.length) + "</p>"
+				suggestBox.onclick = function (event) { searchBar2.value = event.srcElement.getAttribute("value"); searchBar2.validVal = searchBar2.value; checkStart() }
 				suggestionsContainer2.appendChild(suggestBox)
 			}
 		}
 
 
 		// console.log(room["name"])
-		
-		
+
+
 
 	}
 }
 
-import {begin} from "./main.js"
+import { begin } from "./main.js"
 
 function checkStart() {
 	if (searchBar1.validVal && searchBar2.validVal) {
@@ -253,7 +264,7 @@ searchBar2.addEventListener("keyup", suggest2)
 wheelchairCheckbox.addEventListener("change", checkStart)
 
 document.body.addEventListener("click", hideSuggestions)
-document.body.onload=fetchRooms
+document.body.onload = fetchRooms
 
 // startFloorFilterButton.addEventListener("click", expandStartFilter)
 
