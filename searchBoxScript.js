@@ -46,8 +46,14 @@ function expand() {
 	advancedOptions.style.height = "0px"
 	advancedOptions.style.opacity = "0"
 	if (searchOpen) {
-		container.style.width = "550px"
-		container.style.height = "180px"
+		container.style.width = "100%"
+		container.style.height = "80%"
+		searchBar1.style.width = "80%"
+		searchBar2.style.width = "80%"
+		searchBar2.style.height = "10%"
+		searchBar2.style.height = "10%"
+		advancedSearchOpen.style.left = "150px"
+		advancedSearchOpen.style.bottom = "550px"
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
 		searchBar1.style.opacity = "1"
@@ -68,8 +74,8 @@ function expand() {
 function expandAdvanced() {
 	advancedOpen = !advancedOpen
 	if (advancedOpen) {
-		container.style.height = "320px"
-		advancedOptions.style.height = "140px"
+		container.style.height = "50%"
+		advancedOptions.style.height = "50%"
 		advancedOptions.style.opacity = "100"
 	} else {
 		container.style.height = "180px"
