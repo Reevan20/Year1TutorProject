@@ -56,22 +56,29 @@ function expand() {
 
 		}
 		else {
-			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + "px";
-			advancedSearchOpen.style.left = searchBar2.getBoundingClientRect().right + 75 + "px";
 			container.style.width = MAX_SIZE + "px";
 			container.style.height = "180px";
 			advancedSearchOpen.style.left = MAX_SIZE - advancedSearchOpen.getBoundingClientRect().width - 10 + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + "px";
 
 		}
 
 
 		searchBar1.style.width = "80%"
 		searchBar2.style.width = "80%"
-		searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
-		searchBar2.style.height = searchBar1.style.height;
 		let smallScreen = window.innerHeight < 600;
+		if (smallScreen) {
+			searchBar1.style.height = window.innerHeight / 15 + "px";
+			searchBar2.style.height = searchBar1.style.height;
+
+			searchBar2.style.top = searchBar1.getBoundingClientRect().bottom - 10 + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height - 20 + "px";
+		}
 		else {
 			searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
+			searchBar2.style.height = searchBar1.style.height;
+
+		}
 
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
@@ -101,6 +108,9 @@ function expandAdvanced() {
 			advancedOptions.style.top = advancedSearchOpen.getBoundingClientRect().bottom + 20 + "px";
 			advancedOptions.style.opacity = "100"
 			advancedOptions.style.height = "50%"
+			startFilter.style.left = "60%"
+			targetFilter.style.left = "60%"
+			wheelchairCheckbox.style.left = "70%";
 
 		} else {
 			container.style.height = "65%"
