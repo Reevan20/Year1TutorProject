@@ -2,7 +2,7 @@
       position: absolute;
       width: 85%;
       height: 8%;
-      background-color: lightgrey;
+      /*background-color: lightgrey;*/
       left: 7.5%;
       top: 70%;
 
@@ -11,8 +11,21 @@
       align-items: center;
       text-align: center;
       touch-action: none;
+
+      border: 10px solid #aaaaaa;
+      box-sizing: border-box;
+      border-radius: 30px;
+      box-shadow: 0px 0px 32px 13px rgba(105,105,105,0.55);
+      background: #a3a3a3;
+      background: radial-gradient(circle, rgba(163, 163, 163, 1) 0%, rgba(110, 110, 110, 1) 50%, rgba(194, 194, 194, 1) 100%);
   }
 
+  img {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
   .content {
       display: flex;
       flex-direction: column;
