@@ -37,7 +37,7 @@ async function fetchRooms() {
 
 
 
-
+const MAX_SIZE = 600
 // var options = ["antimony","arsenic","aluminum","selenium","hydrogen","oxygen","nitrogen","rhenium"]
 
 function expand() {
@@ -47,10 +47,41 @@ function expand() {
 	advancedOpen = false
 	advancedOptions.style.height = "0px"
 	advancedOptions.style.opacity = "0"
+	const mobileWidth = window.innerWidth < MAX_SIZE;
+
 	if (searchOpen) {
-		//start shrinking if width-20 < 550
-		container.style.width = Math.min(550,width - 20)
-		container.style.height = "180px"
+		if (mobileWidth) {
+			advancedSearchOpen.style.left = container.getBoundingClientRect().left + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height + 10 + "px";
+			container.style.width = window.innerWidth - 20 + "px";
+			container.style.height = "35%";
+
+		}
+		else {
+			container.style.width = MAX_SIZE + "px";
+			container.style.height = "180px";
+			advancedSearchOpen.style.left = MAX_SIZE - advancedSearchOpen.getBoundingClientRect().width - 10 + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + "px";
+
+		}
+
+
+		searchBar1.style.width = "80%"
+		searchBar2.style.width = "80%"
+		let smallScreen = window.innerHeight < 600;
+		if (smallScreen) {
+			searchBar1.style.height = window.innerHeight / 15 + "px";
+			searchBar2.style.height = searchBar1.style.height;
+
+			searchBar2.style.top = searchBar1.getBoundingClientRect().bottom - 10 + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height - 20 + "px";
+		}
+		else {
+			searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
+			searchBar2.style.height = searchBar1.style.height;
+
+		}
+
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
 		searchBar1.style.opacity = "1"
@@ -79,14 +110,37 @@ function expandAdvanced() {
 	var width = window.innerWidth
 
 	advancedOpen = !advancedOpen
+
+	const mobileWidth = window.innerWidth < MAX_SIZE;
+
 	if (advancedOpen) {
-		container.style.height = "320px"
-		advancedOptions.style.height = "140px"
-		advancedOptions.style.opacity = "100"
+		if (mobileWidth) {
+			container.style.height = "80%";
+			advancedOptions.style.top = advancedSearchOpen.getBoundingClientRect().bottom + 20 + "px";
+			advancedOptions.style.opacity = "100"
+			advancedOptions.style.height = "50%"
+			startFilter.style.left = "60%"
+			targetFilter.style.left = "60%"
+			wheelchairCheckbox.style.left = "70%";
+
+		} else {
+			advancedOptions.style.top = searchBar2.getBoundingClientRect().bottom + 20 + "px"
+			container.style.height = "65%"
+			advancedOptions.style.height = "50%"
+			advancedOptions.style.opacity = "100"
+		}
+
 	} else {
-		container.style.height = "180px"
-		advancedOptions.style.height = "0px"
-		advancedOptions.style.opacity = "0"
+		if (mobileWidth) {
+			advancedOptions.style.height = "0px"
+			advancedOptions.style.opacity = "0"
+			container.style.height = "35%"
+		}
+		else {
+			container.style.height = "180px"
+			advancedOptions.style.height = "0px"
+			advancedOptions.style.opacity = "0"
+		}
 
 	}
 }
@@ -105,7 +159,7 @@ function suggest1() {
 	console.log(startFilter.value.toLowerCase())
 
 	for (var room of rooms) {
-	console.log(room["floor"])
+		console.log(room["floor"])
 
 		if (room["floor"].toLowerCase() == startFilter.value.toLowerCase() || startFilter.value.toLowerCase() == "any") {
 			if (foundNum >= 7) {
@@ -130,8 +184,8 @@ function suggest1() {
 
 
 		// console.log(room["name"])
-		
-		
+
+
 
 	}
 }
@@ -147,7 +201,7 @@ function suggest2() {
 	}
 	var foundNum = 0
 	for (var room of rooms) {
-	console.log(room["floor"])
+		console.log(room["floor"])
 
 		if (room["floor"].toLowerCase() == targetFilter.value.toLowerCase() || targetFilter.value.toLowerCase() == "any") {
 			if (foundNum >= 7) {
@@ -172,13 +226,13 @@ function suggest2() {
 
 
 		// console.log(room["name"])
-		
-		
+
+
 
 	}
 }
 
-import {begin} from "./main.js"
+import { begin } from "./main.js"
 
 function checkStart() {
 	if (searchBar1.validVal && searchBar2.validVal) {
