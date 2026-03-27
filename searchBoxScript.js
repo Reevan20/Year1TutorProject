@@ -60,6 +60,7 @@ function expand() {
 			advancedSearchOpen.style.left = searchBar2.getBoundingClientRect().right + 75 + "px";
 			container.style.width = MAX_SIZE + "px";
 			container.style.height = "180px";
+			advancedSearchOpen.style.left = MAX_SIZE - advancedSearchOpen.getBoundingClientRect().width - 10 + "px";
 
 		}
 
@@ -68,7 +69,9 @@ function expand() {
 		searchBar2.style.width = "80%"
 		searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
 		searchBar2.style.height = searchBar1.style.height;
+		let smallScreen = window.innerHeight < 600;
 		else {
+			searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
 
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
