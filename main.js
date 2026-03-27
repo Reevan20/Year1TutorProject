@@ -4,7 +4,7 @@ import { OrbitControls } from 'https://unpkg.com/three@0.165.0/examples/jsm/cont
 import { OBJLoader } from 'https://unpkg.com/three@0.165.0/examples/jsm/loaders/OBJLoader.js';
 import { GLTFLoader } from 'https://unpkg.com/three@0.165.0/examples/jsm/loaders/GLTFLoader.js';
 
-function main() {
+async function main() {
 
 
 
@@ -65,6 +65,28 @@ connect(536, 171) // near elevator
 
 
 
+async function loadLabels(nodes) {
+    var response = await fetch("fetch_rooms.php")
+    var data = await response.json()
+
+    console.log(data)
+    for (var room of data) {
+        // console.log(room)
+        // console.log(nodes[room["node"]])
+        console.log(room["node"])
+        if (nodes[room["node"]] != null) {
+            nodes[room["node"]]["labels"].push(room["name"])
+            var pos = nodes[room["node"]]["position"]
+            createLabel(room["name"], new THREE.Vector3(pos[0],pos[1],pos[2]))
+            console.log("creating label "+room["name"]+" at "+nodes[room["node"]]["position"])
+        }
+        
+    }
+    console.log("labels done")
+    // initSearch()
+}
+
+// loadLabels(nodes)
 
 // connect(1,83)
 // connect(83,188)
@@ -131,6 +153,7 @@ function loadGLTF(objectFile, onLoad) {
 
 var nodeCubes = []
 function drawNodes() {
+    console.log("drawing nodes")
     for (var c of nodeCubes) {
         scene.remove(c)
     }
@@ -143,7 +166,7 @@ function drawNodes() {
         nodeCube.position.z = nodes[n].position[2]
         nodeCubes.push(nodeCube)
         scene.add(nodeCube)
-        createLabel(n, nodeCube.position)
+        // createLabel(n, nodeCube.position)
     }
 }
 
@@ -377,7 +400,7 @@ function walk() {
         if (angle2 < angle1) {
             // angle2 += 2*Math.PI
         }
-        console.log("angle1 "+angle1/Math.PI*180+" angle2 "+angle2/Math.PI*180)
+        // console.log("angle1 "+angle1/Math.PI*180+" angle2 "+angle2/Math.PI*180)
         user.rotation.y = angle1*(1-betweenProgress) + angle2*(betweenProgress);
     }
     catch {
@@ -392,7 +415,7 @@ function walk() {
 
 }
 
-
+var nameLabels = []
 function createLabel(text, position) {
     var canvas = document.createElement("canvas")
     var context = canvas.getContext("2d")
@@ -413,6 +436,7 @@ function createLabel(text, position) {
     sprite.renderOrder = 6767
     sprite.position.copy(position)
     sprite.scale.set(canvas.width / canvas.height, 1, 1)
+    nameLabels.push(sprite)
     scene.add(sprite)
 }
 
@@ -501,8 +525,9 @@ loadGLTF("assets/aligned_models/glb/elevator.glb", (object) => {
     objects["elevator"] = object;
 });
 
+await loadLabels(nodes)
 
-drawNodes()
+// drawNodes()
 initialiseSlider()
 
 
@@ -587,11 +612,15 @@ function animate() {
     requestAnimationFrame(animate);
 
 
-
+    // console.log("userb"+user.position.y)
     for (var o of Object.keys(objects)) {
         if (objects[o] != false && o != "elevator") {
             adjustOpacity(objects[o], objectHeights[o], user.position.y)
         }
+    }
+    
+    for (var l of nameLabels) {
+        adjustOpacity(l, l.position.y, user.position.y)
     }
     // console.log("y")
     // console.log(user.position.y)
