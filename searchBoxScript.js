@@ -51,7 +51,7 @@ function expand() {
 
 	if (searchOpen) {
 		if (mobileWidth) {
-			advancedSearchOpen.style.left = container.getBoundingClientRect().left + "px";
+			advancedSearchOpen.style.left = searchBar1.getBoundingClientRect().left + "px";
 			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height + 10 + "px";
 			container.style.width = window.innerWidth - 20 + "px";
 			container.style.height = "35%";
@@ -74,7 +74,7 @@ function expand() {
 			searchBar2.style.height = searchBar1.style.height;
 
 			searchBar2.style.top = searchBar1.getBoundingClientRect().bottom - 10 + "px";
-			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height - 20 + "px";
+			advancedSearchOpen.style.top = searchBar2.getBoundingClientRect().top + searchBar1.getBoundingClientRect().height + 10 + "px";
 		}
 		else {
 			searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
@@ -90,8 +90,6 @@ function expand() {
 
 		searchBar1.style.width = Math.min(400, width - 160)
 		searchBar2.style.width = Math.min(400, width - 160)
-		advancedSearchOpen.style.left = 430 - Math.max(0, 550-(width-20))
-
 
 
 	} else {
