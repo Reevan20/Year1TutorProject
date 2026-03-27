@@ -38,6 +38,11 @@
 	/*top: -50%;*/
 	transition: 0.5s;
 }
+img {
+	-webkit-user-drag: none;
+	-webkit-touch-callout: none;
+	user-drag: none;
+}
 
 .searchBar {
 	position: absolute;
