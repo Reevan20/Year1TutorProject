@@ -330,6 +330,8 @@ function walk() {
     for (var i of distances) {
         if (currentDist < sum + i) {
             var between = count
+            var betweenProgress = (currentDist-sum)/i
+            // console.log(betweenProgress)
             break
         }
         sum += i
@@ -346,6 +348,48 @@ function walk() {
     user.position.x = pos[0]
     user.position.y = pos[1] + hoverHeight
     user.position.z = pos[2]
+
+    // user.lookAt(nodes[path[between]])
+
+
+    var look1 = new THREE.Vector3(nodes[path[between+1]].position[0], nodes[path[between+1]].position[1], nodes[path[between+1]].position[2]);
+    var userPos = user.position.clone();
+
+    var dir1 = new THREE.Vector3();
+    dir1.subVectors(look1, userPos);
+    dir1.y = 0;        // ignore vertical
+    dir1.normalize();
+
+    var angle1 = Math.atan2(dir1.x, dir1.z)+Math.PI;
+
+
+    try {
+        var look2 = new THREE.Vector3(nodes[path[between+2]].position[0], nodes[path[between+2]].position[1], nodes[path[between+2]].position[2]);
+        var dir2 = new THREE.Vector3();
+        dir2.subVectors(look2, userPos);
+        dir2.y = 0;        // ignore vertical
+        dir2.normalize();
+
+        var angle2 = Math.atan2(dir2.x, dir2.z)+Math.PI;
+        if (Math.abs(angle1-2*Math.PI) < 0.01 & angle2 < Math.PI) {
+            angle1 = 0
+        }
+        if (angle2 < angle1) {
+            // angle2 += 2*Math.PI
+        }
+        console.log("angle1 "+angle1/Math.PI*180+" angle2 "+angle2/Math.PI*180)
+        user.rotation.y = angle1*(1-betweenProgress) + angle2*(betweenProgress);
+    }
+    catch {
+        user.rotation.y = angle1
+    }
+
+
+    // console.log(angle)
+    
+
+
+
 }
 
 
@@ -558,6 +602,8 @@ function animate() {
 
     walk(user)
     moveCamera()
+    // console.log(user)
+    // user.rotation.y += 0.01
 
 
     renderer.render(scene, camera);
