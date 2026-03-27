@@ -113,6 +113,7 @@ function expandAdvanced() {
 			wheelchairCheckbox.style.left = "70%";
 
 		} else {
+			advancedOptions.style.top = searchBar2.getBoundingClientRect().bottom + 20 + "px"
 			container.style.height = "65%"
 			advancedOptions.style.height = "50%"
 			advancedOptions.style.opacity = "100"
