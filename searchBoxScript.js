@@ -68,6 +68,7 @@ function expand() {
 		searchBar2.style.width = "80%"
 		searchBar1.style.height = Math.min(window.innerHeight / 10, searchBar2.getBoundingClientRect().top - searchBar1.getBoundingClientRect().top - 10) + "px";
 		searchBar2.style.height = searchBar1.style.height;
+		else {
 
 		searchArrow.style.transform = "rotate(180deg)"
 		searchArrow.top = "-150%"
@@ -99,7 +100,7 @@ function expandAdvanced() {
 			advancedOptions.style.height = "50%"
 
 		} else {
-			container.style.height = "50%"
+			container.style.height = "65%"
 			advancedOptions.style.height = "50%"
 			advancedOptions.style.opacity = "100"
 		}
