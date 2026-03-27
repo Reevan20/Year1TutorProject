@@ -1,4 +1,4 @@
-obj = "assets/aligned_models/nodes/second_nodes.obj"
+obj = "assets/aligned_models/nodes/first_nodes.obj"
 
 
 with open(obj, "r") as f:
@@ -6,7 +6,7 @@ with open(obj, "r") as f:
 
 nodes = {}
 id = 1
-idOffset = 276
+idOffset = 190
 for line in lines:
     words = line.split()
     if len(words) == 0:
