@@ -1,12 +1,5 @@
 # Year1TutorProject
-
-## Initial Idea:
 - Pathfinding/guidance app for uni buildings and rooms
-  	- landmarks
-  	- fire estinguishers
-  	- posters?
-  	- https://studentnet.cs.manchester.ac.uk/resources/floorplans/index.php?view=staff
-    - https://en.wikipedia.org/wiki/Wi-Fi_positioning_system (Wi-Fi positioning for indoor tracking?)
  
 ## Key Features:
 - Maps all rooms + entrances
@@ -29,19 +22,9 @@
  - floor: string
  - type: string (FK?)
 
-**Table: Office?**
-This is a possible table
-- id: int (PK)
-- staff: string
-- office_hours??: date-time
-
-# TODO:
-- redoing assets
-- redo search, generic search bar + filters
-
 # Future Features:
 - ads
-- payed accounts
+- paid accounts
 - location sharing
 - favourited routes
 - cool graphics (custom shaders, models)
