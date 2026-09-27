@@ -4,14 +4,12 @@
 ## Key Features:
 - Maps all rooms + entrances
 - Select start/end points
-	- Search using attributes? (type of room?)
+	- Search using attributes (type of room)
 	- accessibility options
 	- warnings for room restrictions
 - Finds the best route from start to end point
 	- Displays route on a map
-	- Textual description of route?
-		- Include pictures?
-	- Live updates position on route?
+	- Updates position on route
  - Use QR codes to pass where starting points are (using URL param)
 
  ## Database Schema:
@@ -20,7 +18,7 @@
  - number: string
  - name: string
  - floor: string
- - type: string (FK?)
+ - type: string
 
 # Future Features:
 - ads
